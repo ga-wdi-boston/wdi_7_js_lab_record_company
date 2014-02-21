@@ -5,24 +5,45 @@
 </head>
 <body>
   <h1>Record Company</h1>
-  <h2>Artists</h2>
-  <ul id="artist-list">
-  </ul>
-  <form>
-    name:<input id="new-artist" />
-    description:<input id="new-artist-info" />
-    <input id="new-artist-button" type="submit" value="Create artist"></submit>
-  </form>
+  <div id="artist-container">
+    <h2>Artists</h2>
+    <ul id="artist-list" data-counter='0'>
+    </ul>
+    <form>
+      name:<input id="new-artist" />
+      description:<input id="new-artist-info" />
+      <input id="new-artist-button" type="submit" value="Create artist"></submit>
+    </form>
+  </div>
 
-  <h2>Albums</h2>
-  <ul id="album-list">
-  </ul>
-  <form>
-    name:<input id="new-album" />
-    band name:<input id="new-album-band" />
-    year released:<input id="new-album-year" />
-    <input id="new-album-button" type="submit" value="Create album"></submit>
-  </form>
+  <div id="album-container">
+    <h2>Albums</h2>
+    <ul id="album-list" data-counter='0'>
+    </ul>
+    <form>
+      name:<input id="new-album" />
+      band name:<input id="new-album-band" />
+      year released:<input id="new-album-year" />
+      <input id="new-album-button" type="submit" value="Create album"></submit>
+    </form>
+  </div>
+
+  <script src='./src/artists.js'></script>
+  <script src='./src/albums.js'></script>
+
+  <script type="text/javascript">
+  var artistName = document.getElementById('new-artist'),
+      artistInfo = document.getElementById('new-artist-info'),
+      artist_list = document.getElementById('artist-list');
+
+  artist_list.addEventListener('click', RCApp.artistDelete, false);
+
+  artistName.addEventListener('change', RCApp.addArtist, false);
+
+  </script>
+
+
+
 
 
 </body>
