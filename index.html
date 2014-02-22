@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="./css/style.css">
   <script type="text/javascript" src="src/main.js"></script>
   <script type="text/javascript" src="src/Artist.js"></script>
-  <script type="text/javascript" src="src/Albums.js"></script>
+  <script type="text/javascript" src="src/Album.js"></script>
 </head>
 <body>
   <h1>Janice's Record Company</h1>
@@ -14,13 +14,20 @@
 	  Add Artist:
     <!-- <input type='text' id='input-text-name' placeholder='Add Artist'></input> -->
     <form>
-      <input id='input-text-name' placeholder='Add Artist Name'/>
-      <input id='input-text-description' placeholder='Add Artist Description'/>
+      <input id='input-text-name' placeholder='Artist Name'/>
+      <input id='input-text-description' placeholder='Description'/>
       <input id="add-artist" type="submit" value="add an artist">
     </form>
     <ul id='artists-list' data-counter='0'>List of Artists
 	  </ul>
   <h2>Albums:</h2>
+    <form>
+        <input id='input-text-name-album' placeholder='Album Name'/>
+        <input id='input-text-year' placeholder='Release Year'/>
+        <select id='band-name'>
+        </select>
+        <input id="add-album" type="submit" value="add an album">
+    </form>
 	  <ul id="albums-list">
 	  </ul>
 </body>

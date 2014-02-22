@@ -1,9 +1,32 @@
 var ArtistList = ArtistList || {};
 artist_arr = []
-Artist = function(name, description){
-	this.name = name;
-	this.description = description;
+
+Artist = function(name,description){
+	if(name.length > 0 && description.length > 0){
+		this.name = name;
+		this.description = description;
+		this.albums = [];
+	} else {
+		throw new Error('must enter a name and description');
+	}
 };
+
+Artist.prototype.addAlbumToArtist = function(event) {
+	this.albums.push(album);
+};
+
+ArtistList.artistDelete = function(event){
+  var artist_list_array = event.target.id.split('_'),
+  list = document.getElementById('artists-list'),
+  id,artist;
+
+  id = artist_list_array[artist_list_array.length - 1];
+  //artist = event.target.parentNode (same as but it is more fragile)
+  artist = document.getElementById('artistElement_' + id);
+  list.removeChild(artist);
+};
+
+
 
 ArtistList.addArtist = function(event){
  // create an artist element
@@ -33,14 +56,15 @@ ArtistList.addArtist = function(event){
  list.appendChild(artistElement);
 
  inputTextName.value = '';
+ inputTextDescription.value = '';
 };
 
 ArtistList.artistDelete = function(event){
-  var artist_array = event.target.id.split('_'),
+  var artist_list_array = event.target.id.split('_'),
   list = document.getElementById('artists-list'),
   id,artist;
 
-  id = artist_array[artist_array.length - 1];
+  id = artist_list_array[artist_list_array.length - 1];
   //artist = event.target.parentNode (same as but it is more fragile)
   artist = document.getElementById('artistElement_' + id);
   list.removeChild(artist);
