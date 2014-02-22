@@ -11,7 +11,12 @@
 <body>
   <h1>Janice's Record Company</h1>
   <h2>Artists:</h2>
-	  Add Artist: <input type='text' id='input-text' placeholder='Add Artist'></input>
+	  Add Artist:
+    <!-- <input type='text' id='input-text-name' placeholder='Add Artist'></input> -->
+    <form>
+      <input id='input-text-name' placeholder='Add Artist'/>
+      <input id="add-artist" type="submit" value="add an artist">
+    </form>
     <ul id='artists-list' data-counter='0'>List of Artists
 	  </ul>
   <h2>Albums:</h2>
@@ -19,3 +24,4 @@
 	  </ul>
 </body>
 </html>
+

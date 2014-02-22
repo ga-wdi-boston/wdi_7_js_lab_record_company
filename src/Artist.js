@@ -6,8 +6,10 @@ Artist = function(name){
 
 ArtistList.addArtist = function(event){
  // create an artist element
+ event.preventDefault();
  var new_one_artist,
  artist = document.createElement('li'),
+ inputTextName = document.getElementById('input-text-name'),
  artist_button = document.createElement('button'),
  list = document.getElementById('artists-list'),
  artist_counter;
@@ -18,13 +20,13 @@ ArtistList.addArtist = function(event){
  // set the artist delete button id
  artist_button.setAttribute('id', 'artist_button_'+ artist_counter);
  artist_counter += 1;
- artist.innerText = event.target.value + '  ';
+ artist.innerText = inputTextName.value;
  artist_button.innerText = 'Delete';
  new_one_artist = new Artist(artist.innerText)
  list.setAttribute('data-counter', artist_counter);
  artist.appendChild(artist_button);
  list.appendChild(artist);
- event.target.value = '';
+ inputTextName.value = '';
 };
 
 ArtistList.artistDelete = function(event){
