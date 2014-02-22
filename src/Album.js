@@ -2,13 +2,13 @@ var AlbumList = AlbumList || {};
 album_arr = []
 
 //Album with a name, band name, and year released
-Album = function(name,band_name, release_year){
-	if(name.length > 0 && band_name.length > 0){
+Album = function(name,band_index, release_year){
+	if(name.length > 0 && band_index.length > 0){
 		this.name = name;
-		this.band_name = band_name;
+		this.band_index = band_index;
 		this.release_year = release_year;
 	} else {
-		throw new Error('must enter a name and band_name');
+		throw new Error('must enter a name and band_index');
 	}
 };
 
@@ -17,47 +17,48 @@ AlbumList.drop_down = function(){
 	    options = artist_arr,
 	    artist,
 	    option_element;
-	for(var i = 0; i < options.length; i++) {
-	  artist = options[i];
+
+	  artist = options[options.length - 1];
 	  option_element = document.createElement("option");
 	  option_element.textContent = artist.name;
-	  option_element.value = artist;
+	  option_element.value = options.length - 1;
 	  select.appendChild(option_element);
-	}
 };
 
 AlbumList.addAlbum = function(event){
- event.preventDefault();
- var the_artist,
- the_album,
- albumElement = document.createElement('li'),
- inputTextName = document.getElementById('input-text-name-album'),
- inputTextBandName = document.getElementById('band-name'),
- inputTextYear = document.getElementById('input-text-year'),
- albumElement_button = document.createElement('button'),
- list = document.getElementById('albums-list'),
- albumElement_counter;
+  event.preventDefault();
+  var the_artist,
+      the_album,
+      albumElement = document.createElement('li'),
+      inputTextName = document.getElementById('input-text-name-album'),
+      selectBandName = document.getElementById('band-name'),
+      inputTextYear = document.getElementById('input-text-year'),
+      albumElement_button = document.createElement('button'),
+      list = document.getElementById('albums-list'),
+      albumElement_counter;
 
- albumElement_counter = parseInt(list.getAttribute('data-counter'));
- albumElement.setAttribute('id', 'albumElement_'+ albumElement_counter);
+  albumElement_counter = parseInt(list.getAttribute('data-counter'));
+  albumElement.setAttribute('id', 'albumElement_'+ albumElement_counter);
 
- albumElement_button.setAttribute('id', 'albumElement_button_'+ albumElement_counter);
- albumElement_counter += 1;
+  albumElement_button.setAttribute('id', 'albumElement_button_'+ albumElement_counter);
+  albumElement_counter += 1;
 
- albumElement.innerText = inputTextName.value;
- albumElement_button.innerText = 'Delete';
+  albumElement.innerText = inputTextName.value;
+  albumElement_button.innerText = 'Delete';
 
- // the_album = new Album(inputTextName.value, inputTextBandName.value, inputTextYear.value);
- // the_artist =
- // the_artist.addAlbumToArtist(the_album);
- // album_arr.push(the_album)
+  // artist_arr[album_arr[0].band_index].name = the name of the band
+  // storing band  by index to avoid dupicating data
+  the_album = new Album(inputTextName.value, selectBandName.value, inputTextYear.value);
+  the_artist = artist_arr[selectBandName.value]
+  the_artist.addAlbumToArtist(the_album);
+  album_arr.push(the_album);
 
- list.setAttribute('data-counter', albumElement_counter);
- albumElement.appendChild(albumElement_button);
- list.appendChild(albumElement);
+  list.setAttribute('data-counter', albumElement_counter);
+  albumElement.appendChild(albumElement_button);
+  list.appendChild(albumElement);
 
- inputTextName.value = '';
- inputTextYear.value = '';
+  inputTextName.value = '';
+  inputTextYear.value = '';
 };
 
 AlbumList.albumDelete = function(event){
