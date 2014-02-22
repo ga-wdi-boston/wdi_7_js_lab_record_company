@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>RCApp</title>
+	<link rel="stylesheet" type="text/css" href="./css/style.css">
+	<script src="./src/RCApp.js" type="text/javascript"></script>
+	<script src="./src/album.js" type="text/javascript"></script>
+	<script src="./src/artist.js" type="text/javascript"></script>
+</head>
+	<body>
+
+	<header>
+		<h1>RCApp Dashboard</h1>
+	</header>
+
+	<div id="artists">
+		<h2>Artists</h2>
+		<div id="new-artist">
+			<input id="add-artist-name" placeholder="Artist name">
+			<input id="add-artist-desc" placeholder="Description">
+			<button id="add-artist-button">Add</button>
+		</div>
+
+		<ul id="artists-list">
+		</ul>
+	</div>
+
+	<div id="albums">
+		<h2>Albums</h2>
+		<ul id="albums-list">
+		</ul>
+	</div>
+
+
+  <script type="text/javascript">
+    var addArtistButton, artistList;
+
+		addArtistButton = document.getElementById("add-artist-button")
+    addArtistButton.addEventListener('click', RCApp.addArtist, false);
+
+  </script>
+
+	</body>
+</html>
