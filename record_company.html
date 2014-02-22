@@ -34,13 +34,26 @@
   <script type="text/javascript">
   var artistName = document.getElementById('new-artist'),
       artistInfo = document.getElementById('new-artist-info'),
-      artist_list = document.getElementById('artist-list');
+      artist_list = document.getElementById('artist-list'),
+
+      albumName = document.getElementById('new-album'),
+      albumBandName = document.getElementById('new-album-band'),
+      albumYear = document.getElementById('new-album-year'),
+      album_list = document.getElementById('album-list');
 
   artist_list.addEventListener('click', RCApp.artistDelete, false);
 
   artist_list.addEventListener('click', RCApp.artistShow, false);
 
   artistInfo.addEventListener('change', RCApp.addArtist, false);
+
+
+  album_list.addEventListener('click', RCApp.albumDelete, false);
+
+  album_list.addEventListener('click', RCApp.albumShow, false);
+
+  albumYear.addEventListener('change', RCApp.addAlbum, false);
+
 
   </script>
 
