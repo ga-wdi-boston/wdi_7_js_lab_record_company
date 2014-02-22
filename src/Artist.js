@@ -1,5 +1,5 @@
 var ArtistList = ArtistList || {};
-
+artist_array = []
 Artist = function(name){
 	this.name = name;
 };
@@ -8,24 +8,25 @@ ArtistList.addArtist = function(event){
  // create an artist element
  event.preventDefault();
  var new_one_artist,
- artist = document.createElement('li'),
+ artistElement = document.createElement('li'),
  inputTextName = document.getElementById('input-text-name'),
- artist_button = document.createElement('button'),
+ artistElement_button = document.createElement('button'),
  list = document.getElementById('artists-list'),
- artist_counter;
+ artistElement_counter;
  // get the number of items in list from the list
  // data-counter attribute
- artist_counter = parseInt(list.getAttribute('data-counter'));
- artist.setAttribute('id', 'artist_'+ artist_counter);
- // set the artist delete button id
- artist_button.setAttribute('id', 'artist_button_'+ artist_counter);
- artist_counter += 1;
- artist.innerText = inputTextName.value;
- artist_button.innerText = 'Delete';
- new_one_artist = new Artist(artist.innerText)
- list.setAttribute('data-counter', artist_counter);
- artist.appendChild(artist_button);
- list.appendChild(artist);
+ artistElement_counter = parseInt(list.getAttribute('data-counter'));
+ artistElement.setAttribute('id', 'artistElement_'+ artistElement_counter);
+ // set the artistElement delete button id
+ artistElement_button.setAttribute('id', 'artistElement_button_'+ artistElement_counter);
+ artistElement_counter += 1;
+ artistElement.innerText = inputTextName.value;
+ artistElement_button.innerText = 'Delete';
+ new_one_artist = new Artist(artistElement.innerText)
+ artist_array.push(new_one_artist)
+ list.setAttribute('data-counter', artistElement_counter);
+ artistElement.appendChild(artistElement_button);
+ list.appendChild(artistElement);
  inputTextName.value = '';
 };
 
