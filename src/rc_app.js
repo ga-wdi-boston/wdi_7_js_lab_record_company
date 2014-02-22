@@ -1,0 +1,3 @@
+// Root namespace
+
+var RCApp = {};
