@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Record Company App</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<script type="text/javascript" src="album.js"></script>
+	<script type="text/javascript" src="artist.js"></script>
+	<script type="text/javascript" src="RCApp.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="jumbotron">
+			<h1>JS Record Company App</h1>
+		</div>
+		<div id="artists">
+			<form>
+				<input type="textarea" id="artist-name" placeholder="Artist name">
+				<input type="textarea" id="artist-description" placeholder="Artist description">
+				<input type="submit" id="artist-button" class="button">
+			</form>
+			<div id="artist-list" data-counter="0">
+			</div>
+		</div>
+		<div id="albums">
+			<form>
+				<input type="textarea" id="album-name" placeholder="Album name">
+				<input type="textarea" id="album-artists" placeholder="Album artists">
+				<input type="textarea" id="album-year" placeholder="Year of release">
+				<input type="submit" id="album-button" class="button">
+			</form>
+			<div id="album-list" data-counter="0">
+			</div>
+		</div>
+	</div>
+
+	<script type='text/javascript'>
+		var artist_button = document.getElementById('artist-button'),
+			album_button = document.getElementById('album-button'),
+			artist_list = document.getElementById('artist-list'),
+			album_list = document.getElementById('album-list');
+		// Oops, wont work. 'this' pointer inside the event handler
+		// is the element that received the click.
+
+		// Event handlers for new artists and albums
+		artist_button.addEventListener('click', RCApp.buttonHandler, false);
+		album_button.addEventListener('click', RCApp.buttonHandler, false);
+
+		// Event handlers for delete buttons
+		artist_list.addEventListener('click', RCApp.actionHandler, false);
+		album_list.addEventListener('click', RCApp.actionHandler, false);
+
+		// Event handlers for show more button
+		artist_list.addEventListener('click', RCApp.showMore, false);
+
+		// This will bind the this pointer inside the event handler
+		// to newObj. Which will work.
+		//button.addEventListener('click', newObj.buttonHandler.bind(newObj), false);
+
+	</script>
+</body>
+</html>
