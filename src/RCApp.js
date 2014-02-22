@@ -3,7 +3,6 @@ window.onload = function(){
 
 };
 
-
 RCApp = {};
 
 RCApp.artists = [];
@@ -20,7 +19,23 @@ RCApp.addArtist = function(event){
 	desc_field.value = '';
 	RCApp.artists.push(artist);
 	RCApp.updateCounters();
-	RCApp.renderList('artists-list');
+	RCApp.renderList('artists-list', RCApp.artists);
+};
+
+RCApp.addAlbum = function(event){
+	var album, name_field, band_field, year_field;
+	name_field = document.getElementById("add-album-name");
+	band_field = document.getElementById("add-album-band");
+	year_field = document.getElementById("add-album-year");
+
+	album = new Album(name_field.value, band_field.value, year_field.value);
+	name_field.value = '';
+	band_field.value = '';
+	year_field.value = '';
+
+	RCApp.albums.push(album);
+	RCApp.updateCounters();
+	RCApp.renderList('albums-list', RCApp.albums);
 };
 
 RCApp.updateCounters = function(){
@@ -28,19 +43,16 @@ RCApp.updateCounters = function(){
 	RCApp.album_counter = RCApp.albums.length;
 };
 
-RCApp.addAlbum = function(albumElement){
-	RCApp.albums.push(albumElement);
-};
-
-RCApp.renderList = function(list){
+RCApp.renderList = function(list, array){
 	var i, length;
 	i = 0;
-	length = RCApp.artist_counter
+	length = array.length;
+
 	list = document.getElementById(list)
 	list.innerHTML = ''
 
 	for(;i < length;){
-		list.appendChild(RCApp.artists[i].renderMe());
+		list.appendChild(array[i].renderMe());
 		i = i + 1;
 	};
 

@@ -27,16 +27,25 @@
 
 	<div id="albums">
 		<h2>Albums</h2>
+		<div id="new-album">
+			<input id="add-album-name" placeholder="Album name">
+			<input id="add-album-band" placeholder="Band name">
+			<input id="add-album-year" placeholder="Album year">
+			<button id="add-album-button">Add</button>
+		</div>
 		<ul id="albums-list">
 		</ul>
 	</div>
 
 
   <script type="text/javascript">
-    var addArtistButton, artistList;
+    var addArtistButton, addAlbumButton;
 
-		addArtistButton = document.getElementById("add-artist-button")
+		addArtistButton = document.getElementById("add-artist-button");
     addArtistButton.addEventListener('click', RCApp.addArtist, false);
+
+    addAlbumButton = document.getElementById("add-album-button");
+    addAlbumButton.addEventListener('click', RCApp.addAlbum, false);
 
   </script>
 
