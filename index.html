@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Record Company App</title>
+  <title>Virgin Records Dashboard</title>
   <!-- Load JavaScript files with in order of namespace -->
   <script type="text/javascript" src="src/rc_app.js"></script>
   <script type="text/javascript" src="src/record_company.js"></script>
@@ -9,14 +9,38 @@
   <script type="text/javascript" src="src/album.js"></script>
 </head>
 <body>
-<h1>Record Company</h1>
-<div>
-  <h2>Artists</h2>
-  <ul id="artist_list"></ul>
-</div>
-<div>
-  <h2>Albums</h2>
-  <ul id="album_list"></ul>
+<div id="record_company">
+  <h1>Virgin Records Dashboard of Awesomeness</h1>
+  <div id="artists">
+    <h2>Artists</h2>
+    <ul id="artist_list">
+      <li>Bob Joe
+        <button>Delete</button>
+        <div class="description hide show">
+          <p>Description</p>
+          <ul class="artist-albums">
+            <li>Bob Joe</li>
+            <li>Billy Kid</li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="albums">
+    <h2>Albums</h2>
+    <ul id="album_list">
+      <li>Rocker
+        <button>Delete</button>
+        <div class="description hide show">
+          <p>Band Name | Year Released</p>
+          <ul class="album-artists">
+            <li>Bob Joe</li>
+            <li>Billy Kid</li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </div>
 </div>
 </body>
 </html>

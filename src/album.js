@@ -3,8 +3,13 @@ RCApp.recordCompany.album = function ( name, bandName, year ) {
   this.bandName = bandName;
   this.year = year;
 
+  this.description = bandName + ' | ' + year;
+
   // An album can have many artists
   this.artists = [];
+
+  // For the renderHelper
+  this.type = album;
 
 };
 

@@ -5,6 +5,9 @@ RCApp.recordCompany.artist = function ( name, description ) {
   // An artist can have many albums
   this.albums = [];
 
+  // For the renderHelper
+  this.type = artist;
+
 };
 
 
@@ -16,7 +19,7 @@ RCApp.recordCompany.artist.prototype = {
     this.albums.push( album );
   },
   // An artist can show and hide details through CSS classes
-  this.showDetails = function ( ) {
+  this.showDetails : function ( ) {
     // need an element property to the artist object to manipulate
   }
 };
