@@ -6,10 +6,10 @@ RCApp.recordCompany.album = function ( name, bandName, year ) {
   this.description = bandName + ' | ' + year;
 
   // An album can have many artists
-  this.artists = [];
+  this.list = [];
 
   // For the renderHelper
-  this.type = album;
+  this.type = 'album';
 
 };
 
@@ -17,7 +17,7 @@ RCApp.recordCompany.album = function ( name, bandName, year ) {
 RCApp.recordCompany.album.prototype = {
 
   // An album can show and hide details through CSS classes
-  this.showDetails : function ( ) {
+  showDetails : function ( ) {
     // need an element property to the artist object to manipulate
   }
 };

@@ -13,7 +13,10 @@
   <h1>Virgin Records Dashboard of Awesomeness</h1>
   <div id="artists">
     <h2>Artists</h2>
-    <ul id="artist_list">
+    <input type="text" id="artistName" placeholder="Artist Name">
+    <input type="text" id="artistDesc" placeholder="Artist Description">
+    <input type="submit" id="submitArtist">
+    <ul id="artist_list" data-counter='0' >
       <li>Bob Joe
         <button>Delete</button>
         <div class="description hide show">
@@ -28,7 +31,11 @@
   </div>
   <div id="albums">
     <h2>Albums</h2>
-    <ul id="album_list">
+    <input type="text" id="albumName" placeholder="Album Name">
+    <input type="text" id="albumBand" placeholder="Album Band">
+    <input type="text" id="albumYear" placeholder="Album Year">
+    <input type="submit" id="submitAlbum">
+    <ul id="album_list" data-counter='0' >
       <li>Rocker
         <button>Delete</button>
         <div class="description hide show">
@@ -42,5 +49,9 @@
     </ul>
   </div>
 </div>
+
+<script type="text/javascript">
+  window.onload = RCApp.init();
+</script>
 </body>
 </html>
