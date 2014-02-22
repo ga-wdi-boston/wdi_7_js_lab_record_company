@@ -1,8 +1,13 @@
 var ArtistList = ArtistList || {};
 
+Artist = function(name){
+	this.name = name;
+};
+
 ArtistList.addArtist = function(event){
  // create an artist element
- var artist = document.createElement('li'),
+ var new_one_artist,
+ artist = document.createElement('li'),
  artist_button = document.createElement('button'),
  list = document.getElementById('artists-list'),
  artist_counter;
@@ -15,7 +20,7 @@ ArtistList.addArtist = function(event){
  artist_counter += 1;
  artist.innerText = event.target.value + '  ';
  artist_button.innerText = 'Delete';
- // increment the number of artists in list
+ new_one_artist = new Artist(artist.innerText)
  list.setAttribute('data-counter', artist_counter);
  artist.appendChild(artist_button);
  list.appendChild(artist);
