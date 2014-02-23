@@ -140,6 +140,10 @@ RCApp.recordCompany = {
 
   ///// Handles all events for a specific artist / album
   showOrDelete : function ( event ) {
+    if ( !RCApp.eventHelper(event) ) {
+      return false;
+    }
+
     var detailsContainer, target, actionArray, action, albums,
       i = 0,
       length;

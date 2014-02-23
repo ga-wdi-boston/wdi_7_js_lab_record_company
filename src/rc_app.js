@@ -61,6 +61,10 @@ var RCApp = {
     return target;
   },
 
+  eventHelper : function (event) {
+    return ( event.target.tagName === 'INPUT' || event.target.tagName === 'BUTTON' )
+  },
+
   // App initializer
   init    : function () {
     var submitArtist = document.getElementById('submitArtist'),
