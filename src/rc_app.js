@@ -6,6 +6,7 @@ var RCApp = {
     // Create nodes
     var target = document.createElement('li'),
       deleteButton = document.createElement('button'),
+      showDetails = document.createElement('button'),
       detailsContainer = document.createElement('div'),
       detailsDesc = document.createElement('p'),
       detailsList = document.createElement('ul'),
@@ -15,10 +16,13 @@ var RCApp = {
 
     // Update IDs
     target.id = obj.type + '_' + counter;
-    deleteButton.id = 'button_' + counter;
+    deleteButton.id = 'delete_artist_' + counter;
+    showDetails.id = 'show_' + obj.type + '_' + counter;
+    detailsContainer.className = 'display-off'
     // Update HTML
     target.innerHTML = obj.name;
     deleteButton.innerHTML = 'Delete';
+    showDetails.innerHTML = 'Show';
     detailsDesc.innerHTML = obj.description;
 
     // Create new list item and append to detailsList
@@ -32,8 +36,15 @@ var RCApp = {
     // Append nodes
     detailsContainer.appendChild(detailsDesc);
     detailsContainer.appendChild(detailsList);
-    target.appendChild(deleteButton);
+
+    // Append delete only if an artist
+    if ( obj.type === 'artist' ) {
+      target.appendChild(deleteButton);
+    }
+    target.appendChild(showDetails);
     target.appendChild(detailsContainer);
+
+    obj.element = target;
 
     // Return node
     return target;
@@ -49,5 +60,7 @@ var RCApp = {
     // Attach event listeners
     submitArtist.addEventListener('click', this.recordCompany.renderArtist, false);
     submitAlbum.addEventListener('click', this.recordCompany.renderAlbum, false);
+    artistList.addEventListener('click', this.recordCompany.showOrDelete, false);
+    albumList.addEventListener('click', this.recordCompany.showOrDelete, false);
   }
 };

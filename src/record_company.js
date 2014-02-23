@@ -35,7 +35,41 @@ RCApp.recordCompany = {
     return true;
   },
 
-  // Event Handlers
+  showDetails       : function ( obj ) {
+    var details = obj.getElementsByTagName('div')[0];
+      currentClass = details.className;
+
+    if ( currentClass === 'display-on' ) {
+      details.setAttribute('class', 'display-off');
+    } else {
+      details.setAttribute('class', 'display-on');
+    }
+
+    return true;
+  },
+
+  deleteArtist     : function ( artist ) {
+    var list = RCApp.recordCompany.albums,
+      i = 0,
+      length = list.count;
+
+    // Remove the artist from the album list of artists
+    for (; i < length; ) {
+      if ( list[i].name === artist.name) {
+        list.splice(i, 1);
+        break;
+      } else {
+        i = i + 1;
+      }
+    }
+
+    // Remove artist from DOM
+    artist.remove();
+
+    return true;
+  },
+
+  // Event Handlers - careful of keyword this
   renderArtist  : function (event) {
     var artistName = document.getElementById('artistName'),
       artistDesc = document.getElementById('artistDesc'),
@@ -53,5 +87,22 @@ RCApp.recordCompany = {
 
     event.preventDefault();
     RCApp.recordCompany.addAlbum( album );
+  },
+  // this should either show or delete
+  showOrDelete : function ( event ) {
+    var detailsContainer, target, actionArray, action;
+
+    actionArray = event.target.getAttribute('id').split('_');
+    action = actionArray[0];
+    target = document.getElementById(actionArray[1] + '_' + actionArray[2]);
+
+    event.preventDefault();
+
+    // two event sub-handlers depending on the action
+    if ( action === 'show' ) {
+      RCApp.recordCompany.showDetails( target );
+    } else if ( action === 'delete' ) {
+      RCApp.recordCompany.deleteArtist( target );
+    }
   }
 };

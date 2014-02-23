@@ -2,6 +2,9 @@
 <html>
 <head>
   <title>Virgin Records Dashboard</title>
+
+  <!-- Load CSS files -->
+  <link rel="stylesheet" type="text/css" href="css/style.css">
   <!-- Load JavaScript files with in order of namespace -->
   <script type="text/javascript" src="src/rc_app.js"></script>
   <script type="text/javascript" src="src/record_company.js"></script>
@@ -16,18 +19,7 @@
     <input type="text" id="artistName" placeholder="Artist Name">
     <input type="text" id="artistDesc" placeholder="Artist Description">
     <input type="submit" id="submitArtist">
-    <ul id="artist_list" data-counter='0' >
-      <li>Bob Joe
-        <button>Delete</button>
-        <div class="description hide show">
-          <p>Description</p>
-          <ul class="artist-albums">
-            <li>Bob Joe</li>
-            <li>Billy Kid</li>
-          </ul>
-        </div>
-      </li>
-    </ul>
+    <ul id="artist_list" data-counter='0' ></ul>
   </div>
   <div id="albums">
     <h2>Albums</h2>
@@ -35,18 +27,7 @@
     <input type="text" id="albumBand" placeholder="Album Band">
     <input type="text" id="albumYear" placeholder="Album Year">
     <input type="submit" id="submitAlbum">
-    <ul id="album_list" data-counter='0' >
-      <li>Rocker
-        <button>Delete</button>
-        <div class="description hide show">
-          <p>Band Name | Year Released</p>
-          <ul class="album-artists">
-            <li>Bob Joe</li>
-            <li>Billy Kid</li>
-          </ul>
-        </div>
-      </li>
-    </ul>
+    <ul id="album_list" data-counter='0' ></ul>
   </div>
 </div>
 
