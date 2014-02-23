@@ -2,11 +2,30 @@
 <html>
 <head>
   <title></title>
-  <script src="RcAppRecordCompany.js" type="text/javascript" charset="utf-8"></script>
-  <script src="RcAppArtist.js" type="text/javascript" charset="utf-8"></script>
-  <script src="RcAppAlbum.js" type="text/javascript" charset="utf-8"></script>
+  <script src="src/recordCompany.js" type="text/javascript" charset="utf-8"></script>
+  <script src="src/artist.js" type="text/javascript" charset="utf-8"></script>
+  <script src="src/album.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
+<h1>Record Company</h1>
+  <h2>Artist List</h2>
+    <ul id="artist-list">
+    </ul>
+      <form id="create-form">
+        <input id="new-artist-name-field" placeholder="Artist Name" />
+        <input id="new-description-field" placeholder="Description" />
+        <input id="add-artist-button" type="submit" value="Add Artist" />
+      </form>
+
+  <h2>Album List</h2>
+  <ul id="album-list">
+    </ul>
+      <form id="create-form">
+        <input id="new-album-field" placeholder="Album Name" />
+        <input id="new-bandname-field" placeholder="Band Name" />
+        <input id="new-year-field" placeholder="Album Year" />
+        <input id="add-album-button" type="submit" value="Add Album" />
+      </form>
 
 </body>
 </html>
