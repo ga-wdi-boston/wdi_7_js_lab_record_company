@@ -57,6 +57,17 @@ RCApp.Artist.prototype.show = function(){
   this.deleteButton.style.display = 'none';
 };
 
+RCApp.Artist.prototype.save = function(){
+  this.description = this.descEl.value;
+
+  this.descEl.style.display = 'none';
+  this.saveButton.style.display = 'none';
+  this.cancelButton.style.display = 'none';
+
+  this.showButton.style.display = 'inline';
+  this.deleteButton.style.display = 'inline';
+};
+
 // Counter function to get the next value of a counter
 // RCApp.Artist.next();
 RCApp.Artist.next = (function(){

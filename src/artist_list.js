@@ -14,7 +14,8 @@ RCApp.ArtistList.init = function(artistListEl, newArtistForm, newArtistName, new
 
   this.actionDispatcher = {
       'show': this.showArtist.bind(this),
-      'delete': this.deleteArtist.bind(this)
+      'delete': this.deleteArtist.bind(this),
+      'save': this.saveArtist.bind(this)
       };
 };
 
@@ -31,6 +32,11 @@ RCApp.ArtistList.showArtist = function(id){
   var artist = this.artists[id];
   artist.show();
 };
+
+RCApp.ArtistList.saveArtist = function(id){
+  var artist = this.artists[id];
+  artist.save();
+}
 
 RCApp.ArtistList.deleteArtist = function(id){
   // this.artists[id].show();
