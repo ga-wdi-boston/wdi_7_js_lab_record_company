@@ -70,7 +70,6 @@ var RCApp = {
     submitArtist.addEventListener('click', this.recordCompany.renderArtist, false);
     submitAlbum.addEventListener('click', this.recordCompany.renderAlbum, false);
     artistList.addEventListener('click', this.recordCompany.showOrDelete, false);
-    artistList.addEventListener('click', this.recordCompany.artistAddAlbum, false);
     albumList.addEventListener('click', this.recordCompany.showOrDelete, false);
   }
 };
