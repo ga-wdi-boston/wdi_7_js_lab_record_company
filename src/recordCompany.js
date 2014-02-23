@@ -28,8 +28,15 @@ RecordCompany = {
     var artist_list = document.getElementById('artist-list'),
       new_li_artist = document.createElement('li'),
       new_artist_name = document.getElementById('new-artist-name-field'),
-      new_artist_description = document.getElementById('new-description-field');
-      new_artist = new Artist(new_artist_name.value, new_artist_description.value);
+      new_artist_description = document.getElementById('new-description-field')
+      all_artists = [];
+
+    artist_counter = parseInt(artist_list.getAttribute('artist-counter'));
+    artist_counter += 1;
+    new_li_artist.setAttribute('id', 'artist_' + artist_counter);
+
+    new_artist = new RcApp.Artist(new_artist_name.value, new_artist_description.value);
+    all_artists.push(new_artist);
 
     new_li_artist.innerHTML = new_artist_name.value;
     new_artist_name.field = "";
@@ -42,8 +49,15 @@ RecordCompany = {
       new_li_album = document.createElement('li'),
       new_album_name = document.getElementById('new-album-field'),
       new_album_bandname = document.getElementById('new-bandname-field'),
-      new_album_year = document.getElementById('new-year-field');
-      new_album = new Album(new_album_name.value, new_album_bandname.value, new_album_year.value);
+      new_album_year = document.getElementById('new-year-field'),
+      all_albums = [];
+
+
+    album_counter = parseInt(album_list.getAttribute('album-counter'));
+    album_counter += 1;
+    new_li_album.setAttribute('id', 'album_' + album_counter);
+    new_album = new RcApp.Album(new_album_name.value, new_album_bandname.value, new_album_year.value);
+    all_albums.push(new_album);
 
     new_li_album.innerHTML = new_album_name.value;
     new_album_name.field = "";
