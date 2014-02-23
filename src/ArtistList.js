@@ -25,16 +25,7 @@ ArtistList.createInfoButton = function() {
 	infoButton.setAttribute('class', 'show');
 	infoButton.innerText = 'show/hide info';
 	return infoButton;
-}
-
-ArtistList.createAlbumListButton = function() {
-	var albumListButton;
-	albumListButton = document.createElement('button');
-	albumListButton.setAttribute('id', 'artistElement_album_list_button_'+ ArtistList.counter);
-	albumListButton.setAttribute('class', 'see-albums');
-	albumListButton.innerText = 'see albums?';
-	return albumListButton;
-}
+};
 
 ArtistList.createDescriptionElement = function(txt) {
 	var descriptionElement;
@@ -43,7 +34,15 @@ ArtistList.createDescriptionElement = function(txt) {
 	descriptionElement.setAttribute('class', 'description');
 	descriptionElement.innerText = txt;
 	return descriptionElement;
-}
+};
+
+ArtistList.createArtistAlbumListElement = function() {
+	var artistAlbumListElement;
+	artistAlbumListElement = document.createElement('ul');
+	artistAlbumListElement.setAttribute('id', 'artistElement_albums_list_'+ ArtistList.counter);
+	artistAlbumListElement.setAttribute('class', 'artist-albums-list');
+	return artistAlbumListElement;
+};
 
 ArtistList.createToggleElement = function() {
 	var toggleElement;
@@ -51,7 +50,7 @@ ArtistList.createToggleElement = function() {
 	toggleElement.setAttribute('id', 'artistElement_toggle_'+ ArtistList.counter);
 	toggleElement.setAttribute('class', 'no-display');
 	return toggleElement;
-}
+};
 
 ArtistList.addArtist = function(event){
 	// create an artist element
@@ -82,19 +81,20 @@ ArtistList.addArtist = function(event){
 	// Create the button for show/hide of artist info
 	var artistInfoButtonElement = ArtistList.createInfoButton();
 
-	var artistShowAlbumsButtonElement = ArtistList.createAlbumListButton();
-
 	// Create the description element
 	var artistDescriptionElement = ArtistList.createDescriptionElement(inputTextDescription.value);
 
 	// Create the toggle elelment
 	var artistToggleElement = ArtistList.createToggleElement();
 
+	// create the list which will have the albums of the given artist in it
+	var artistAlbumsListElement = ArtistList.createArtistAlbumListElement();
+
 	artistElement.appendChild(artistDeleteButtonElement);
 	artistElement.appendChild(artistInfoButtonElement);
 	artistElement.appendChild(artistToggleElement);
 	artistToggleElement.appendChild(artistDescriptionElement);
-	artistToggleElement.appendChild(artistShowAlbumsButtonElement);
+	artistToggleElement.appendChild(artistAlbumsListElement);
 
 	artistList.appendChild(artistElement);
 	//----------------------------------------------------------------
@@ -137,7 +137,6 @@ ArtistList.toggleArtistInfo = function(event){
 	}
 };
 
-
 ArtistList.artistDelete = function(event){
 	var target = event.target;
 
@@ -152,4 +151,16 @@ ArtistList.artistDelete = function(event){
   id = artist_list_array[artist_list_array.length - 1];
   artist = document.getElementById('artistElement_' + id);
   list.removeChild(artist);
+};
+
+ArtistList.updateArtistAlbumsList = function(artist, album) {
+	// Step 1: Find the artist
+	var artistElement = document.getElementById('artistElement_' + album.band_index);
+
+	// Step 2: Create the li element
+	var artistAlbumListElement = document.createElement('li');
+	artistAlbumListElement.innerText = album.name;
+
+	// Step 3: Append the created li to the artist's albums list
+	document.getElementById('artistElement_albums_list_' + album.band_index).appendChild(artistAlbumListElement);
 };
