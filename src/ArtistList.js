@@ -151,6 +151,7 @@ ArtistList.artistDelete = function(event){
   id = artist_list_array[artist_list_array.length - 1];
   artist = document.getElementById('artistElement_' + id);
   list.removeChild(artist);
+  AlbumList.delete_from_drop_down(id);
 };
 
 ArtistList.updateArtistAlbumsList = function(artist, album) {

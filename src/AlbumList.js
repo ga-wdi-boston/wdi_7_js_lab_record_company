@@ -4,13 +4,26 @@ AlbumList.drop_down = function(){
 	var select = document.getElementById("band-name"),
 	    options = artist_arr,
 	    artist,
+      id,
 	    option_element;
 
-	  artist = options[options.length - 1];
-	  option_element = document.createElement("option");
-	  option_element.textContent = artist.name;
-	  option_element.value = options.length - 1;
-	  select.appendChild(option_element);
+  artist = options[options.length - 1];
+  id = options.length - 1
+  option_element = document.createElement("option");
+  option_element.setAttribute('id', 'album_artist_option_'+ id );
+  option_element.textContent = artist.name;
+  option_element.value = options.length - 1;
+  select.appendChild(option_element);
+};
+
+AlbumList.delete_from_drop_down = function(artist_id){
+  var select = document.getElementById("band-name"),
+      options = artist_arr,
+      artist,
+      option_element;
+  artist = options[artist_id];
+  option_element = document.getElementById("album_artist_option_" + artist_id);
+  select.removeChild(option_element);
 };
 
 AlbumList.addAlbum = function(event){
