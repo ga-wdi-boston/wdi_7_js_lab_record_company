@@ -3,7 +3,7 @@ var Artist = function(name, description){
   this.description = description;
 };
 
-Artist.prototype.render = function() {
+Artist.prototype.render_artist = function() {
   var new_li = document.createElement('li'),
   new_artist_name_input = document.getElementById('new-artist-name'),
   new_artist_description_input = document.getElementById('new-artist-description');

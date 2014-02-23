@@ -10,6 +10,13 @@ window.onload = function() {
     RCApp.add_to_artist_list(artist_list, new_artist);
     return false;
   };
+
+  album_button.onclick = function(event) {
+    event.preventDefault();
+    var new_album = new Album((document.getElementById('new-album-name').value), (document.getElementById('band-name').value), (document.getElementById('year-released').value));
+    RCApp.add_to_album_list(album_list, new_album);
+    return false;
+  };
 };
 
 var RCApp = {
@@ -17,7 +24,13 @@ var RCApp = {
 };
 
 RCApp.add_to_artist_list = function(list, artist) {
-  var artist_to_add = artist.render();
+  var artist_to_add = artist.render_artist();
   list.appendChild(artist_to_add);
+  return true;
+};
+
+RCApp.add_to_album_list = function(list, album) {
+  var album_to_add = album.render_album();
+  list.appendChild(album_to_add);
   return true;
 };
