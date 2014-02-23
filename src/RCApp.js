@@ -47,3 +47,13 @@ RCApp.artistItemDelete = function(event){
   item = document.getElementById('item_' + id);
   list.removeChild(item);
 };
+
+RCApp.albumItemDelete = function(event){
+  var item_array = event.target.id.split('_'),
+  list = document.getElementById('album-list'),
+  id, item;
+
+  id = item_array[item_array.length - 1];
+  item = document.getElementById('item_' + id);
+  list.removeChild(item);
+};

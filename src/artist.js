@@ -24,23 +24,6 @@ Artist.prototype.render_artist = function() {
 
   new_li.appendChild(delete_button);
 
-  // complete_button.onclick = function(event) {
-  //   event.preventDefault;
-  //   finished_list.appendChild(this.parentNode); //this removes the item from it's existing location, since it already exists
-  //   this.remove();
-  //   return false;
-  // };
-
-  // delete_button.innerHTML = 'Delete';
-  // delete_button.className = 'delete';
-  // new_li.appendChild(delete_button);
-
-  // delete_button.onclick = function(event) {
-  //   event.preventDefault;
-  //   this.parentNode.remove();
-  //   return false;
-  // };
-
   new_artist_name_input.value = '';
   new_artist_description_input.value = '';
   return new_li;
