@@ -140,11 +140,15 @@ RCApp.recordCompany = {
 
   ///// Handles all events for a specific artist / album
   showOrDelete : function ( event ) {
-    var detailsContainer, target, actionArray, action;
+    var detailsContainer, target, actionArray, action, albums,
+      i = 0,
+      length;
 
     actionArray = event.target.getAttribute('id').split('_');
     action = actionArray[0];
     target = document.getElementById(actionArray[1] + '_' + actionArray[2]);
+    albums = document.getElementsByClassName('album_artist_' + actionArray[2]);
+    length = albums.length;
 
     event.preventDefault();
 
@@ -159,6 +163,10 @@ RCApp.recordCompany = {
       }
     } else if ( action === 'delete' ) {
       target.remove();
+      for (; i < length ; ) {
+        albums[0].remove();
+        i = i + 1;
+      }
     } else {
       RCApp.recordCompany.artistAddAlbum();
     }
@@ -180,6 +188,7 @@ RCApp.recordCompany = {
 
     // Populate list items and append to list
     listItemAlbum.innerHTML = artistName;
+    listItemAlbum.className = 'album_artist_' + artistId;
     listItemArtist.innerHTML = albumName;
 
     listArtist.appendChild(listItemArtist);
