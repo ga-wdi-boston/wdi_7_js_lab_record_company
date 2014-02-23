@@ -27,6 +27,15 @@ ArtistList.createInfoButton = function() {
 	return infoButton;
 }
 
+ArtistList.createAlbumListButton = function() {
+	var albumListButton;
+	albumListButton = document.createElement('button');
+	albumListButton.setAttribute('id', 'artistElement_album_list_button_'+ ArtistList.counter);
+	albumListButton.setAttribute('class', 'see-albums');
+	albumListButton.innerText = 'see albums?';
+	return albumListButton;
+}
+
 ArtistList.createDescriptionElement = function(txt) {
 	var descriptionElement;
 	descriptionElement = document.createElement('p');
@@ -73,6 +82,8 @@ ArtistList.addArtist = function(event){
 	// Create the button for show/hide of artist info
 	var artistInfoButtonElement = ArtistList.createInfoButton();
 
+	var artistShowAlbumsButtonElement = ArtistList.createAlbumListButton();
+
 	// Create the description element
 	var artistDescriptionElement = ArtistList.createDescriptionElement(inputTextDescription.value);
 
@@ -83,6 +94,7 @@ ArtistList.addArtist = function(event){
 	artistElement.appendChild(artistInfoButtonElement);
 	artistElement.appendChild(artistToggleElement);
 	artistToggleElement.appendChild(artistDescriptionElement);
+	artistToggleElement.appendChild(artistShowAlbumsButtonElement);
 
 	artistList.appendChild(artistElement);
 	//----------------------------------------------------------------
@@ -104,12 +116,12 @@ ArtistList.addArtist = function(event){
 	inputTextDescription.value = '';
 };
 
-ArtistList.toggleArtistDescription = function(event){
+ArtistList.toggleArtistInfo = function(event){
   // Step 1: Get the parent node of target (li)
   // Step 2: Get the element with class name artist-description
   // Step 3: Toggle the display of the element with class name artist-description
-	var target = event.target, list, artist_list_array,id,artist_element;
-	if(target.nodeName !== "BUTTON" || target.className === "delete") {
+	var target = event.target, list, artist_list_array,id, div;
+	if(target.nodeName !== "BUTTON" || target.className === "delete" || target.className === "see-albums") {
 	  return;
 	}
 
@@ -117,13 +129,19 @@ ArtistList.toggleArtistDescription = function(event){
 	artist_list_array = event.target.id.split('_');
 	id = artist_list_array[artist_list_array.length - 1];
 	div = document.getElementById('artistElement_toggle_' + id);
-	div.setAttribute('class', 'yes-display');
+
+	if (div.className === 'no-display'){
+		div.setAttribute('class', 'yes-display');
+	} else {
+		div.setAttribute('class', 'no-display');
+	}
 };
+
 
 ArtistList.artistDelete = function(event){
 	var target = event.target;
 
-	if(target.nodeName !== "BUTTON" || target.className === "show"){
+	if(target.nodeName !== "BUTTON" || target.className === "show" || target.className === "see-albums"){
 		return;
 	}
 
