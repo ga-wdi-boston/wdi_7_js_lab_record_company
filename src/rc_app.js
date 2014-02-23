@@ -10,9 +10,9 @@ var RCApp = {
       detailsContainer = document.createElement('div'),
       detailsDesc = document.createElement('p'),
       detailsList = document.createElement('ul'),
-      detailsListHeader = document.createElement('h4'),
+      detailsListHeader = document.createElement('h3'),
       addAlbumList = document.createElement('ul'),
-      addAlbumListHeader = document.createElement('h4');
+      addAlbumListHeader = document.createElement('h3');
 
     // Update IDs
     target.id = obj.type + '_' + counter;
@@ -26,9 +26,10 @@ var RCApp = {
     deleteButton.className = "btn btn-default";
     showDetails.className = "btn btn-default";
     target.className = "list-group-item";
+    detailsDesc.className = "well";
 
     // Update HTML
-    target.innerHTML = obj.name;
+    target.innerHTML = "Name: " + obj.name;
     deleteButton.innerHTML = 'Delete';
     showDetails.innerHTML = 'Show';
     detailsDesc.innerHTML = obj.description;
@@ -53,6 +54,7 @@ var RCApp = {
     target.appendChild(showDetails);
     target.appendChild(detailsContainer);
 
+    // Always good to save node that we worked so hard to create
     obj.element = target;
 
     // Return node
@@ -66,7 +68,7 @@ var RCApp = {
       artistList = document.getElementById('artist_list'),
       albumList = document.getElementById('album_list');
 
-    // Attach event listeners
+    // Attach event listeners and let it work its magic
     submitArtist.addEventListener('click', this.recordCompany.renderArtist, false);
     submitAlbum.addEventListener('click', this.recordCompany.renderAlbum, false);
     artistList.addEventListener('click', this.recordCompany.showOrDelete, false);

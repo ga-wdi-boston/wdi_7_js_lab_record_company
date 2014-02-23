@@ -4,7 +4,39 @@ RCApp.recordCompany = {
   name      : 'Virgin Records',
   albums    : [],
   artists   : [],
-  addArtist : function ( artist ) {
+
+  // Helper method for addArtist and addAlbum
+  renderAlbumButtons    : function ( obj, array, list ) {
+    var length = array.length,
+    i = 0,
+    albumLi,
+    albumButton;
+
+    for (; i < length ;) {
+      albumLi = document.createElement('li');
+      albumButton = document.createElement('button');
+
+      if ( obj.type === 'artist' ) {
+        albumButton.id = obj.name + '_' + obj.counter + '_' + array[i].name + '_' + array[i].counter;
+        albumButton.innerHTML = array[i].name;
+      } else {
+        albumButton.id = array[i].name + '_' + array[i].counter + '_' + obj.name + '_' + obj.counter;
+        albumButton.innerHTML = obj.name;
+      }
+
+      albumButton.className = "btn btn-default";
+      albumLi.appendChild(albumButton);
+      if ( list ) {
+        list.appendChild(albumLi);
+      } else {
+        array[i].addAlbumList.appendChild(albumLi);
+      }
+
+      i = i + 1;
+    }
+  },
+
+  addArtist             : function ( artist ) {
     var parent = document.getElementById('artist_list'),
       counter = parseInt(parent.getAttribute('data-counter')),
       node = RCApp.renderHelper( artist, counter ),
@@ -20,24 +52,13 @@ RCApp.recordCompany = {
     // Now can pull the addAlbumList from DOM
     addAlbumList = document.getElementById('add_albums_' + counter);
 
-    for (; i < length ;) {
-      albumLi = document.createElement('li');
-      albumButton = document.createElement('button');
-
-      albumButton.id = artist.name + '_' + counter + '_' + this.albums[i].name + '_' + this.albums[i].counter;
-      albumButton.innerHTML = this.albums[i].name;
-      albumButton.className = "btn btn-default";
-      albumLi.appendChild(albumButton);
-      addAlbumList.appendChild(albumLi);
-
-      i = i + 1;
-    }
-
-    // Artist properties needed when a new album is added
+    // Keep artist in array with essential properties
     artist.counter = counter;
     artist.addAlbumList = addAlbumList;
-    // Then push to artists array
     this.artists.push(artist);
+
+    // Render album buttons to add albums
+    this.renderAlbumButtons( artist, this.albums, addAlbumList );
 
     // Increment the counter and set attribute
     counter = counter + 1;
@@ -45,6 +66,7 @@ RCApp.recordCompany = {
 
     return true;
   },
+
   addAlbum  : function ( album ) {
     var parent = document.getElementById('album_list'),
       counter = parseInt(parent.getAttribute('data-counter')),
@@ -57,19 +79,7 @@ RCApp.recordCompany = {
     album.counter = counter;
     this.albums.push(album);
 
-    // Add album to list of albums an artist can have
-    for (; i < length; ) {
-      albumLi = document.createElement('li');
-      albumButton = document.createElement('button');
-
-      albumButton.id = this.artists[i].name + '_' + this.artists[i].counter + '_' + album.name + '_' + counter;
-      albumButton.innerHTML = album.name;
-      albumButton.className = "btn btn-default";
-      albumLi.appendChild(albumButton);
-      this.artists[i].addAlbumList.appendChild(albumLi);
-
-      i = i + 1;
-    }
+    this.renderAlbumButtons( album, this.artists, null );
 
     counter = counter + 1;
     parent.setAttribute('data-counter', counter);
@@ -93,15 +103,7 @@ RCApp.recordCompany = {
     return true;
   },
 
-  deleteArtist     : function ( artist ) {
-
-    // Remove artist from DOM
-    artist.remove();
-
-    return true;
-  },
-
-  //////////////////////////////
+  //////////////////////////////////////////////
   // Event Handlers - careful of keyword this //
   renderArtist  : function (event) {
     var artistName = document.getElementById('artistName'),
@@ -135,7 +137,8 @@ RCApp.recordCompany = {
     RCApp.recordCompany.addAlbum( album );
     console.log('rendered!');
   },
-  // this should either show or delete
+
+  ///// Handles all events for a specific artist / album
   showOrDelete : function ( event ) {
     var detailsContainer, target, actionArray, action;
 
@@ -155,9 +158,9 @@ RCApp.recordCompany = {
         event.target.innerHTML = 'Show';
       }
     } else if ( action === 'delete' ) {
-      RCApp.recordCompany.deleteArtist( target );
+      target.remove();
     } else {
-      RCApp.recordCompany.artistAddAlbum()
+      RCApp.recordCompany.artistAddAlbum();
     }
   },
 
@@ -183,6 +186,6 @@ RCApp.recordCompany = {
     listAlbum.appendChild(listItemAlbum);
 
     // Remove the button once added
-    event.target.parentNode.remove()
+    event.target.parentNode.remove();
   }
 };

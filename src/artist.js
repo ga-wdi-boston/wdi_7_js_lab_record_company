@@ -6,13 +6,3 @@ RCApp.recordCompany.artist = function ( name, description ) {
   this.type = 'artist';
 
 };
-
-
-// Define the prototype with shared behavior
-RCApp.recordCompany.artist.prototype = {
-
-  // An artist can add album
-  addAlbum : function ( album ) {
-
-  }
-};
