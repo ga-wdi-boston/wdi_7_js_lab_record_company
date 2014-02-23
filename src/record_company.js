@@ -2,20 +2,39 @@
 
 RCApp.recordCompany = {
   name      : 'Virgin Records',
-  artists   : [],
   albums    : [],
   addArtist : function ( artist ) {
     var parent = document.getElementById('artist_list'),
       counter = parseInt(parent.getAttribute('data-counter')),
-      node = RCApp.renderHelper( artist, counter );
+      node = RCApp.renderHelper( artist, counter ),
+      addAlbumList,
+      length = this.albums.length,
+      i = 0,
+      albumLi,
+      albumButton;
 
-    this.artists.push(artist);
-
-    counter = counter + 1;
-    parent.setAttribute('data-counter', counter);
 
     // Add to DOM
     parent.appendChild(node);
+
+    // Now can pull the addAlbumList from DOM
+    addAlbumList = document.getElementById('add_albums_' + counter);
+
+    for (; i < length ;) {
+      albumLi = document.createElement('li');
+      albumButton = document.createElement('button');
+
+      albumButton.id = artist.name + '_' + counter + '_' + this.albums[i].name + '_' + this.albums[i].counter;
+      albumButton.innerHTML = this.albums[i].name;
+      albumLi.appendChild(albumButton);
+      addAlbumList.appendChild(albumLi);
+
+      i = i + 1;
+    }
+
+
+    counter = counter + 1;
+    parent.setAttribute('data-counter', counter);
 
     return true;
   },
@@ -24,6 +43,7 @@ RCApp.recordCompany = {
       counter = parseInt(parent.getAttribute('data-counter')),
       node = RCApp.renderHelper( album, counter );
 
+    album.counter = counter;
     this.albums.push(album);
 
     counter = counter + 1;
@@ -49,19 +69,6 @@ RCApp.recordCompany = {
   },
 
   deleteArtist     : function ( artist ) {
-    var list = RCApp.recordCompany.albums,
-      i = 0,
-      length = list.count;
-
-    // Remove the artist from the album list of artists
-    for (; i < length; ) {
-      if ( list[i].name === artist.name) {
-        list.splice(i, 1);
-        break;
-      } else {
-        i = i + 1;
-      }
-    }
 
     // Remove artist from DOM
     artist.remove();
@@ -69,7 +76,8 @@ RCApp.recordCompany = {
     return true;
   },
 
-  // Event Handlers - careful of keyword this
+  //////////////////////////////
+  // Event Handlers - careful of keyword this //
   renderArtist  : function (event) {
     var artistName = document.getElementById('artistName'),
       artistDesc = document.getElementById('artistDesc'),
@@ -124,5 +132,26 @@ RCApp.recordCompany = {
     } else if ( action === 'delete' ) {
       RCApp.recordCompany.deleteArtist( target );
     }
+  },
+
+  artistAddAlbum    : function (event) {
+    var itemArray = event.target.id.split('_'), // 'bob_2_rock_1' artist then album
+      artistName = itemArray[0],
+      artistId = itemArray[1],
+      albumName = itemArray[2],
+      albumId = itemArray[3],
+      listArtist = document.getElementById('details_artist_' + artistId),
+      listAlbum = document.getElementById('details_album_' + albumId),
+      listItemArtist = document.createElement('li'),
+      listItemAlbum = document.createElement('li');
+
+    event.preventDefault();
+
+    // Populate list items and append to list
+    listItemAlbum.innerHTML = artistName;
+    listItemArtist.innerHTML = albumName;
+
+    listArtist.appendChild(listItemArtist);
+    listAlbum.appendChild(listItemAlbum);
   }
 };

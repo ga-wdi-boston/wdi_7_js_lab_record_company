@@ -9,36 +9,29 @@ var RCApp = {
       showDetails = document.createElement('button'),
       detailsContainer = document.createElement('div'),
       detailsDesc = document.createElement('p'),
-      detailsList = document.createElement('ul'),
-      detailsListItem,
-      listLength = obj.list.length,
-      i = 0;
+      detailsList = document.createElement('ul');
+      addAlbumList = document.createElement('ul');
 
     // Update IDs
     target.id = obj.type + '_' + counter;
     deleteButton.id = 'delete_artist_' + counter;
     showDetails.id = 'show_' + obj.type + '_' + counter;
-    detailsContainer.className = 'display-off'
+    detailsContainer.className = 'display-off';
+    detailsList.id = 'details_' + obj.type + '_' + counter;
+    addAlbumList.id = 'add_albums_' + counter;
     // Update HTML
     target.innerHTML = obj.name;
     deleteButton.innerHTML = 'Delete';
     showDetails.innerHTML = 'Show';
     detailsDesc.innerHTML = obj.description;
 
-    // Create new list item and append to detailsList
-    for (; i < listLength;) {
-      detailsListItem = document.createElement('li');
-      detailsListItem.innerHTML = obj.list[i].name;
-      detailsList.appendChild(detailsListItem);
-      i = i + 1;
-    }
-
     // Append nodes
     detailsContainer.appendChild(detailsDesc);
     detailsContainer.appendChild(detailsList);
 
-    // Append delete only if an artist
+    // Append delete only and add albums list if an artist
     if ( obj.type === 'artist' ) {
+      detailsContainer.appendChild(addAlbumList);
       target.appendChild(deleteButton);
     }
     target.appendChild(showDetails);
