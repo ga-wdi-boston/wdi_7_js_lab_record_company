@@ -4,6 +4,8 @@
   <title>Virgin Records Dashboard</title>
 
   <!-- Load CSS files -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+
   <link rel="stylesheet" type="text/css" href="css/style.css">
   <!-- Load JavaScript files with in order of namespace -->
   <script type="text/javascript" src="src/rc_app.js"></script>
@@ -12,22 +14,47 @@
   <script type="text/javascript" src="src/album.js"></script>
 </head>
 <body>
-<div id="record_company">
-  <h1>Virgin Records Dashboard of Awesomeness</h1>
+<div class="container">
+  <h1 class="jumbotron">Virgin Records Dashboard of Awesomeness</h1>
   <div id="artists">
     <h2>Artists</h2>
-    <input type="text" id="artistName" placeholder="Artist Name">
-    <input type="text" id="artistDesc" placeholder="Artist Description">
-    <input type="submit" id="submitArtist">
-    <ul id="artist_list" data-counter='0' ></ul>
+    <h3>Create new</h3>
+    <form class="form-inline">
+      <div class="form-group">
+        <label>Name</label>
+        <input type="text" id="artistName" class="form-control" placeholder="Artist Name">
+      </div>
+      <div class="form-group">
+        <label>Description</label>
+        <input type="text" id="artistDesc" class="form-control" placeholder="Artist Description">
+      </div>
+      <div class="form-group">
+        <input type="submit" id="submitArtist" class="btn btn-default" value="Create">
+      </div>
+    </form>
+    <ul id="artist_list" class="list-group" data-counter='0' ></ul>
   </div>
   <div id="albums">
     <h2>Albums</h2>
-    <input type="text" id="albumName" placeholder="Album Name">
-    <input type="text" id="albumBand" placeholder="Album Band">
-    <input type="text" id="albumYear" placeholder="Album Year">
-    <input type="submit" id="submitAlbum">
-    <ul id="album_list" data-counter='0' ></ul>
+    <h3>Create new</h3>
+    <form class="form-inline">
+      <div class="form-group">
+        <label>Name</label>
+        <input type="text" id="albumName" class="form-control" placeholder="Album Name">
+      </div>
+      <div class="form-group">
+        <label>Band</label>
+        <input type="text" id="albumBand" class="form-control" placeholder="Album Band">
+      </div>
+      <div class="form-group">
+        <label>Year Released</label>
+        <input type="text" id="albumYear" class="form-control" placeholder="Album Year">
+      </div>
+      <div class="form-group">
+        <input type="submit" id="submitAlbum" class="btn btn-default" value="Create">
+      </div>
+    </form>
+    <ul id="album_list" class="list-group" data-counter='0' ></ul>
   </div>
 </div>
 

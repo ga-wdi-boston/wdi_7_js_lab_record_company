@@ -26,6 +26,7 @@ RCApp.recordCompany = {
 
       albumButton.id = artist.name + '_' + counter + '_' + this.albums[i].name + '_' + this.albums[i].counter;
       albumButton.innerHTML = this.albums[i].name;
+      albumButton.className = "btn btn-default";
       albumLi.appendChild(albumButton);
       addAlbumList.appendChild(albumLi);
 
@@ -63,6 +64,7 @@ RCApp.recordCompany = {
 
       albumButton.id = this.artists[i].name + '_' + this.artists[i].counter + '_' + album.name + '_' + counter;
       albumButton.innerHTML = album.name;
+      albumButton.className = "btn btn-default";
       albumLi.appendChild(albumButton);
       this.artists[i].addAlbumList.appendChild(albumLi);
 

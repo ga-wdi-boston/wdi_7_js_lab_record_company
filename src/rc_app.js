@@ -10,9 +10,9 @@ var RCApp = {
       detailsContainer = document.createElement('div'),
       detailsDesc = document.createElement('p'),
       detailsList = document.createElement('ul'),
-      detailsListHeader = document.createElement('h2'),
+      detailsListHeader = document.createElement('h4'),
       addAlbumList = document.createElement('ul'),
-      addAlbumListHeader = document.createElement('h2');
+      addAlbumListHeader = document.createElement('h4');
 
     // Update IDs
     target.id = obj.type + '_' + counter;
@@ -21,6 +21,12 @@ var RCApp = {
     detailsContainer.className = 'display-off';
     detailsList.id = 'details_' + obj.type + '_' + counter;
     addAlbumList.id = 'add_albums_' + counter;
+
+    // Update Classes (for styling)
+    deleteButton.className = "btn btn-default";
+    showDetails.className = "btn btn-default";
+    target.className = "list-group-item";
+
     // Update HTML
     target.innerHTML = obj.name;
     deleteButton.innerHTML = 'Delete';
