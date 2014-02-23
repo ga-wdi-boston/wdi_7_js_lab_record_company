@@ -3,6 +3,7 @@
 RCApp.recordCompany = {
   name      : 'Virgin Records',
   albums    : [],
+  artists   : [],
   addArtist : function ( artist ) {
     var parent = document.getElementById('artist_list'),
       counter = parseInt(parent.getAttribute('data-counter')),
@@ -12,7 +13,6 @@ RCApp.recordCompany = {
       i = 0,
       albumLi,
       albumButton;
-
 
     // Add to DOM
     parent.appendChild(node);
@@ -32,7 +32,13 @@ RCApp.recordCompany = {
       i = i + 1;
     }
 
+    // Artist properties needed when a new album is added
+    artist.counter = counter;
+    artist.addAlbumList = addAlbumList;
+    // Then push to artists array
+    this.artists.push(artist);
 
+    // Increment the counter and set attribute
     counter = counter + 1;
     parent.setAttribute('data-counter', counter);
 
@@ -41,10 +47,27 @@ RCApp.recordCompany = {
   addAlbum  : function ( album ) {
     var parent = document.getElementById('album_list'),
       counter = parseInt(parent.getAttribute('data-counter')),
-      node = RCApp.renderHelper( album, counter );
+      node = RCApp.renderHelper( album, counter ),
+      length = this.artists.length,
+      i = 0,
+      albumLi,
+      albumButton;
 
     album.counter = counter;
     this.albums.push(album);
+
+    // Add album to list of albums an artist can have
+    for (; i < length; ) {
+      albumLi = document.createElement('li');
+      albumButton = document.createElement('button');
+
+      albumButton.id = this.artists[i].name + '_' + this.artists[i].counter + '_' + album.name + '_' + counter;
+      albumButton.innerHTML = album.name;
+      albumLi.appendChild(albumButton);
+      this.artists[i].addAlbumList.appendChild(albumLi);
+
+      i = i + 1;
+    }
 
     counter = counter + 1;
     parent.setAttribute('data-counter', counter);
