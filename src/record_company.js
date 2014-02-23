@@ -176,5 +176,8 @@ RCApp.recordCompany = {
 
     listArtist.appendChild(listItemArtist);
     listAlbum.appendChild(listItemAlbum);
+
+    // Remove the button once added
+    event.target.parentNode.remove()
   }
 };
