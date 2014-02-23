@@ -7,11 +7,16 @@ var Artist = function(name, description){
 
 Artist.prototype = {
 
-	showButton: function(){
-		var showButton;
-		showButton = document.createElement('button');
-		showButton.innerHTML = 'Show';
-		return showButton;
+	makeButton: function(type){
+		var button;
+		button = document.createElement('button');
+		button.innerHTML = type.toUpperCase();
+		if(type === 'delete'){
+			button.className = 'delete-button';
+		} else {
+			button.className = 'show-button';
+		}
+		return button;
 	},
 
 	nameField: function(){
@@ -23,7 +28,10 @@ Artist.prototype = {
 	renderMe: function(){
 		var new_li;
 		new_li = document.createElement('li');
+		new_li.className = this.id;
 		new_li.appendChild(this.nameField());
+		new_li.appendChild(this.makeButton('delete'));
+		new_li.appendChild(this.makeButton('show'));
 		return new_li;
 	}
 

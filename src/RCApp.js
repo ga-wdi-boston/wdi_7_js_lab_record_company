@@ -38,6 +38,35 @@ RCApp.addAlbum = function(event){
 	RCApp.renderList('albums-list', RCApp.albums);
 };
 
+RCApp.deleteItem = function(event){
+	if(event.target.className === 'delete-button'){
+		var item, item_type, item_id;
+		item_id = event.target.parentNode.className;
+		item_type = item_id.split('_')[0]
+
+		if(item_type === 'artist'){
+			RCApp.deleteFromArray('id', item_id, RCApp.artists);
+			RCApp.renderList('artists-list', RCApp.artists);
+		} else {
+			RCApp.deleteFromArray('id', item_id, RCApp.albums);
+			RCApp.renderList('albums-list', RCApp.albums);
+		};
+	};
+};
+
+RCApp.deleteFromArray = function(field, value, array){
+	var i, length;
+	i = 0;
+	length = array.length;
+	for(;i < length;){
+		if(array[i][field] === value){
+			array.splice(i);
+		}
+		i = i + 1;
+	};
+
+};
+
 RCApp.updateCounters = function(){
 	RCApp.artist_counter = RCApp.artists.length;
 	RCApp.album_counter = RCApp.albums.length;

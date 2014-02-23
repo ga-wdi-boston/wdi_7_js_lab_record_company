@@ -1,0 +1,19 @@
+input {
+	padding: 5px;
+	border-radius: 5px;
+	box-shadow: none;
+	border: none;
+	margin-right: 5px;
+}
+
+header{
+	background: gray;
+	width: 100%;
+}
+
+
+.add-box {
+	background: black;
+	border-radius: 5px;
+	padding: 20px;
+}

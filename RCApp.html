@@ -2,50 +2,69 @@
 <html>
 <head>
 	<title>RCApp</title>
-	<link rel="stylesheet" type="text/css" href="./css/style.css">
 	<script src="./src/RCApp.js" type="text/javascript"></script>
 	<script src="./src/album.js" type="text/javascript"></script>
 	<script src="./src/artist.js" type="text/javascript"></script>
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="./css/style.css">
 </head>
 	<body>
 
 	<header>
-		<h1>RCApp Dashboard</h1>
+		<div class='container'>
+			<h1>RCApp Dashboard</h1>
+		</div>
 	</header>
+	<div class='container'>
 
-	<div id="artists">
-		<h2>Artists</h2>
-		<div id="new-artist">
-			<input id="add-artist-name" placeholder="Artist name">
-			<input id="add-artist-desc" placeholder="Description">
-			<button id="add-artist-button">Add</button>
+
+
+		<div class='row'>
+			<div class='col-md-6 col-lg-6'>
+				<div id="artists">
+					<h2>Artists</h2>
+					<div class="add-box">
+						<input id="add-artist-name" placeholder="Artist name">
+						<input id="add-artist-desc" placeholder="Description">
+						<button id="add-artist-button">Add</button>
+					</div>
+
+					<ul id="artists-list">
+					</ul>
+				</div>
+			</div>
+
+			<div class='col-md-6 col-lg-6'>
+				<div id="albums">
+					<h2>Albums</h2>
+					<div class="add-box">
+						<input id="add-album-name" placeholder="Album name">
+						<input id="add-album-band" placeholder="Band name">
+						<input id="add-album-year" placeholder="Album year">
+						<button id="add-album-button">Add</button>
+					</div>
+					<ul id="albums-list">
+					</ul>
+				</div>
+			</div>
 		</div>
-
-		<ul id="artists-list">
-		</ul>
-	</div>
-
-	<div id="albums">
-		<h2>Albums</h2>
-		<div id="new-album">
-			<input id="add-album-name" placeholder="Album name">
-			<input id="add-album-band" placeholder="Band name">
-			<input id="add-album-year" placeholder="Album year">
-			<button id="add-album-button">Add</button>
-		</div>
-		<ul id="albums-list">
-		</ul>
 	</div>
 
 
   <script type="text/javascript">
-    var addArtistButton, addAlbumButton;
+    var addArtistButton, addAlbumButton, artistList, albumList;
 
 		addArtistButton = document.getElementById("add-artist-button");
     addArtistButton.addEventListener('click', RCApp.addArtist, false);
 
     addAlbumButton = document.getElementById("add-album-button");
     addAlbumButton.addEventListener('click', RCApp.addAlbum, false);
+
+		artistList = document.getElementById("artists-list");
+		artistList.addEventListener('click', RCApp.deleteItem, false);
+
+		albumList = document.getElementById("albums-list");
+		albumList.addEventListener('click', RCApp.deleteItem, false);
 
   </script>
 
