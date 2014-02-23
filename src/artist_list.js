@@ -15,17 +15,20 @@ RCApp.ArtistList.init = function(artistListEl, newArtistForm, newArtistName, new
   this.actionDispatcher = {
       'show': this.showArtist.bind(this),
       'delete': this.deleteArtist.bind(this),
-      'save': this.saveArtist.bind(this)
+      'save': this.saveArtist.bind(this),
+      'cancel': this.cancelArtist.bind(this)
       };
 };
 
 RCApp.ArtistList.artistHandler = function(event){
   var targetValues = event.target.getAttribute('id').split('-'),
     targetID = targetValues.pop(),
-    targetAction = targetValues.shift();
-    this.actionDispatcher[targetAction](targetID);
+    targetAction = targetValues.shift(),
+    action = this.actionDispatcher[targetAction];
     event.preventDefault();
-
+    if(action){
+      action(targetID);
+    }
 };
 
 RCApp.ArtistList.showArtist = function(id){
@@ -36,7 +39,12 @@ RCApp.ArtistList.showArtist = function(id){
 RCApp.ArtistList.saveArtist = function(id){
   var artist = this.artists[id];
   artist.save();
-}
+};
+
+RCApp.ArtistList.cancelArtist = function(id){
+  var artist = this.artists[id];
+  artist.cancel();
+};
 
 RCApp.ArtistList.deleteArtist = function(id){
   // this.artists[id].show();
