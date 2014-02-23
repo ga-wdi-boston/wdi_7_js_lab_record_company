@@ -76,6 +76,12 @@ RCApp.recordCompany = {
       artist = new RCApp.recordCompany.artist( artistName.value, artistDesc.value );
 
     event.preventDefault();
+
+    // Remove form input values
+    artistName.value = '';
+    artistDesc.value = '';
+
+    // Render the artist
     RCApp.recordCompany.addArtist( artist );
     console.log('rendered!');
   },
@@ -86,7 +92,15 @@ RCApp.recordCompany = {
       album = new RCApp.recordCompany.album( albumName.value, albumBand.value, albumYear.value );
 
     event.preventDefault();
+
+    // Remove form input values
+    albumName.value = '';
+    albumBand.value = '';
+    albumYear.value = '';
+
+    // Render the album
     RCApp.recordCompany.addAlbum( album );
+    console.log('rendered!');
   },
   // this should either show or delete
   showOrDelete : function ( event ) {
@@ -101,6 +115,12 @@ RCApp.recordCompany = {
     // two event sub-handlers depending on the action
     if ( action === 'show' ) {
       RCApp.recordCompany.showDetails( target );
+      // Change the value of the button
+      if ( event.target.innerHTML === 'Show' ) {
+        event.target.innerHTML = 'Hide';
+      } else {
+        event.target.innerHTML = 'Show';
+      }
     } else if ( action === 'delete' ) {
       RCApp.recordCompany.deleteArtist( target );
     }
