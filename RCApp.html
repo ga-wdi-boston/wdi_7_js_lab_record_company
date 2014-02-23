@@ -17,16 +17,14 @@
 	</header>
 	<div class='container'>
 
-
-
 		<div class='row'>
 			<div class='col-md-6 col-lg-6'>
 				<div id="artists">
 					<h2>Artists</h2>
 					<div class="add-box">
-						<input id="add-artist-name" placeholder="Artist name">
-						<input id="add-artist-desc" placeholder="Description">
-						<button id="add-artist-button">Add</button>
+						<input id="add-artist-name" class="form-control" placeholder="Artist name">
+						<textarea id="add-artist-desc" class="form-control" placeholder="Description"></textarea>
+						<button id="add-artist-button" class="form-control">Add</button>
 					</div>
 
 					<ul id="artists-list">
@@ -38,10 +36,11 @@
 				<div id="albums">
 					<h2>Albums</h2>
 					<div class="add-box">
-						<input id="add-album-name" placeholder="Album name">
-						<input id="add-album-band" placeholder="Band name">
-						<input id="add-album-year" placeholder="Album year">
-						<button id="add-album-button">Add</button>
+						<input id="add-album-name" class="form-control" placeholder="Album name">
+						<select id="add-album-artist" class="form-control" >
+						</select>
+						<input id="add-album-year" class="form-control" placeholder="Album year">
+						<button id="add-album-button" class="form-control">Add</button>
 					</div>
 					<ul id="albums-list">
 					</ul>
@@ -50,9 +49,8 @@
 		</div>
 	</div>
 
-
   <script type="text/javascript">
-    var addArtistButton, addAlbumButton, artistList, albumList;
+    var addArtistButton, addAlbumButton, artistList, albumList, artistSelect;
 
 		addArtistButton = document.getElementById("add-artist-button");
     addArtistButton.addEventListener('click', RCApp.addArtist, false);
@@ -62,6 +60,7 @@
 
 		artistList = document.getElementById("artists-list");
 		artistList.addEventListener('click', RCApp.deleteItem, false);
+		artistList.addEventListener('click', RCApp.toggleDetails, false);
 
 		albumList = document.getElementById("albums-list");
 		albumList.addEventListener('click', RCApp.deleteItem, false);

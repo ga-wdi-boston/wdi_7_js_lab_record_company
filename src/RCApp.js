@@ -1,5 +1,4 @@
 window.onload = function(){
-	// renderLists();
 
 };
 
@@ -14,23 +13,25 @@ RCApp.addArtist = function(event){
 	var artist, name_field, desc_field;
 	name_field = document.getElementById("add-artist-name");
 	desc_field = document.getElementById("add-artist-desc");
-	artist = new Artist(name_field.value, desc_field.value);
+
+	artist = new RCApp.artistContent.Artist(name_field.value, desc_field.value);
 	name_field.value = '';
 	desc_field.value = '';
+
 	RCApp.artists.push(artist);
+	RCApp.populateArtists();
 	RCApp.updateCounters();
 	RCApp.renderList('artists-list', RCApp.artists);
 };
 
 RCApp.addAlbum = function(event){
-	var album, name_field, band_field, year_field;
+	var album, name_field, artist_field, year_field;
 	name_field = document.getElementById("add-album-name");
-	band_field = document.getElementById("add-album-band");
+	artist_field = document.getElementById("add-album-artist");
 	year_field = document.getElementById("add-album-year");
 
-	album = new Album(name_field.value, band_field.value, year_field.value);
+	album = new RCApp.albumContent.Album(name_field.value, year_field.value, artist_field.value);
 	name_field.value = '';
-	band_field.value = '';
 	year_field.value = '';
 
 	RCApp.albums.push(album);
@@ -41,7 +42,7 @@ RCApp.addAlbum = function(event){
 RCApp.deleteItem = function(event){
 	if(event.target.className === 'delete-button'){
 		var item, item_type, item_id;
-		item_id = event.target.parentNode.className;
+		item_id = event.target.parentNode.id;
 		item_type = item_id.split('_')[0]
 
 		if(item_type === 'artist'){
@@ -52,6 +53,23 @@ RCApp.deleteItem = function(event){
 			RCApp.renderList('albums-list', RCApp.albums);
 		};
 	};
+};
+
+RCApp.populateArtists = function(){
+	var list, i, length, option;
+	list = document.getElementById('add-album-artist');
+	list.innerHTML = '';
+
+	i = 0;
+	length = RCApp.artists.length;
+
+	for(;i < length;){
+		option = document.createElement('option');
+		option.innerHTML = RCApp.artists[i].name;
+		list.appendChild(option);
+		i = i + 1;
+	};
+
 };
 
 RCApp.deleteFromArray = function(field, value, array){
@@ -66,6 +84,24 @@ RCApp.deleteFromArray = function(field, value, array){
 	};
 
 };
+
+RCApp.toggleDetails = function(){
+	if(event.target.className === 'show-button btn button-default'){
+		var button, details_div;
+		button = event.target;
+		details_div = button.parentNode.querySelector('div');
+
+		if(details_div.className === 'hide'){
+			details_div.className = 'show';
+			button.innerHTML = 'HIDE DETAILS';
+		} else {
+			details_div.className = 'hide';
+			button.innerHTML = 'SHOW DETAILS';
+		};
+	};
+
+};
+
 
 RCApp.updateCounters = function(){
 	RCApp.artist_counter = RCApp.artists.length;
