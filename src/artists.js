@@ -3,6 +3,7 @@ var RCApp = RCApp || {};
 RCApp.addArtist = function(event){
 
   var artist = document.createElement('li'),
+      artist_name = document.createElement('li'),
       artist_delete_button = document.createElement('button'),
       artist_show_button = document.createElement('button'),
       artist_unshow_button = document.createElement('button'),
@@ -12,6 +13,7 @@ RCApp.addArtist = function(event){
 
   artist_counter = parseInt(artist_list.getAttribute('data-counter'));
   artist.setAttribute('id', 'artist_' + artist_counter);
+  artist_name.setAttribute('id', 'artist_name_' + artist_counter);
   artist_show_button.setAttribute('id', 'artist_show_button_' + artist_counter);
   artist_delete_button.setAttribute('id', 'artist_delete_button_' + artist_counter);
   artist_unshow_button.setAttribute('id', 'artist_unshow_button_' + artist_counter);
@@ -21,6 +23,7 @@ RCApp.addArtist = function(event){
 
 
   artist.innerText = artistName.value + '  ';
+  artist.setAttribute('data-name', artistName.value);
   artist.setAttribute('data-info', event.target.value);
   artist_show_button.innerText = "Show";
   artist_delete_button.innerText = 'Delete';
@@ -58,25 +61,37 @@ RCApp.artistShow = function(event){
   albumButtonAdd = document.createElement('button'),
   id = event.target.id.charAt(event.target.id.length - 1);
 
-  // albumButtonAdd.setAttribute('id', 'album_button_add_' + id);
 
   albumButtonAdd.innerText = "Create album";
+  albumButtonAdd.style.color = "blue";
 
   id = artist_array[artist_array.length - 1];
   artist = document.getElementById('artist_' + id);
   artist_show_button = document.getElementById('artist_show_button_' + id);
+  artist_delete_button = document.getElementById('artist_delete_button_' + id);
 
   artist_info = artist.getAttribute('data-info');
-  artist.removeChild(artist_show_button);
-  artist.innerHTML += ('<br>' + artist_info +'<br>' + 'name:');
+  artist_name = artist.getAttribute('data-name');
 
-  artist.appendChild(albumNameAdd);
-  artist.appendChild(albumButtonAdd);
-  if("artist_show_button_" + event.target.id.charAt(event.target.id.length -1) === event.target.id){
-    artist_list.appendChild(artist);
+  if(artist_show_button.innerText === 'Show'){
+    artist_show_button.innerText = "Unshow";
+    artist.innerHTML += ('<br>' + artist_info +'<br>' + 'name:');
+
+    artist.appendChild(albumNameAdd);
+    artist.appendChild(albumButtonAdd);
+    if("artist_show_button_" + event.target.id.charAt(event.target.id.length -1) === event.target.id){
+      artist_list.appendChild(artist);
+    };
+
+    albumNameAdd.addEventListener('change', RCApp.addAlbumFrom, false);
+  } else {
+    artist_show_button.innerText = "Show";
+    artist.innerHTML = null;
+
+    artist.innerHTML += artist_name;
+    artist.appendChild(artist_delete_button);
+    artist.appendChild(artist_show_button);
   };
-
-  albumNameAdd.addEventListener('change', RCApp.addAlbumFrom, false);
 }
 
 

@@ -24,6 +24,7 @@ RCApp.addAlbum = function(event){
 
 
   album.innerText = albumName.value + '  ';
+  album.setAttribute('data-name', albumName.value);
   album.setAttribute('data-band-name', albumBandName.value);
   album.setAttribute('data-year', event.target.value);
   album_show_button.innerText = "Show";
@@ -93,15 +94,30 @@ RCApp.albumShow = function(event){
   album_list = document.getElementById('album-list'), id, album;
 
   id = album_array[album_array.length - 1];
+
+
+
   album = document.getElementById('album_' + id);
+  album_show_button = document.getElementById('album_show_button_' + id);
+  album_delete_button = document.getElementById('album_delete_button_' + id);
+
   album_band_name = album.getAttribute('data-band-name');
   album_year = album.getAttribute('data-year');
-  album_show_button.innerText = "Unshow";
+  album_name = album.getAttribute('data-name');
+  if(album_show_button.innerText === 'Show'){
+    album_show_button.innerText = "Unshow";
+    album.innerHTML += ('<br>' + album_band_name + '<br>' + album_year);
 
-  album.innerHTML += ('<br>' + album_band_name + '<br>' + album_year);
+    if("album_show_button_" + event.target.id.charAt(event.target.id.length -1) === event.target.id){
+      album_list.appendChild(album);
+    };
+  } else {
+    album_show_button.innerText = "Show";
+    album.innerHTML = null;
 
-  if("album_show_button_" + event.target.id.charAt(event.target.id.length -1) === event.target.id){
-    album_list.appendChild(album);
+    album.innerHTML += album_name;
+    album.appendChild(album_delete_button);
+    album.appendChild(album_show_button);
   };
 }
 
