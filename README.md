@@ -1,6 +1,6 @@
 # JavaScript Record Company
 
-We're going to use JavaScript to create an application that will allow a record company to manage their artists and albums. 
+We're going to use JavaScript to create an application that will allow a record company to manage their artists and albums.
 
 ## Main page (dashboard)
 
