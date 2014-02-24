@@ -1,10 +1,14 @@
 RCApp.artistContent = {
 
 	Artist: function(name, description){
-		this.name = name;
-		this.desc = description;
-		this.albums = [];
-		this.id = 'artist_' + RCApp.artist_counter;
+		if(arguments[0] !== '' && arguments[1] !== ''){
+			this.name = name;
+			this.desc = description;
+			this.albums = [];
+			this.id = 'artist_' + RCApp.artist_counter;
+		} else {
+			throw new Error("Artist name and description is required");
+		}
 	}
 };
 

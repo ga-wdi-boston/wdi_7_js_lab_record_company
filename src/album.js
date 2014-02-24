@@ -1,9 +1,13 @@
 RCApp.albumContent = {
 	Album: function(name, year, artist){
-		this.name = name;
-		this.year = year;
-		this.artists = [artist];
-		this.id = 'album_' + RCApp.album_counter;
+		if(arguments[0] !== '' && arguments[1] !== '' && arguments[2] !== ''){
+			this.name = name;
+			this.year = year;
+			this.artists = [artist];
+			this.id = 'album_' + RCApp.album_counter;
+		} else {
+			throw new Error('Album name, year and artist are required');
+		}
 	}
 
 };
