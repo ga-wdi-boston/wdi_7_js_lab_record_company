@@ -86,4 +86,4 @@ RCApp.Artist.next = (function(){
     counter += 1;
     return  counter
   }
-})()
+})();
