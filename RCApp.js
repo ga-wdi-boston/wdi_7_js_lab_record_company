@@ -31,14 +31,14 @@ RCApp.buttonHandler = function(event) {
 		album = new RCApp.Album(album_name, album_artists, album_year, id);
 		id = id + 1;
 		document.getElementById('album-list').setAttribute('data-counter', id);
-		RCApp.add_album(album);
+		RCApp.add_album(album, id);
 		RCApp.render_artists();
 	}
 };
 
 RCApp.actionHandler = function(event) {
 	event.preventDefault();
-	if (event.target.className === 'delete btn btn-danger	') {
+	if (event.target.className === 'delete btn btn-danger') {
 		this.removeChild(event.target.parentNode);
 	} else if (event.target.className === 'showmore btn btn-info') {
 		if (this.id === 'album-list') {
@@ -154,7 +154,11 @@ RCApp.add_album = function(album) {
 				}
 			} else {
 				// If the artist doesn't exist yet created it and add album
-				var new_artist = new RCApp.Artist(current_artist);
+				var id = parseInt(document.getElementById('album-list').getAttribute('data-counter')),
+					new_artist = new RCApp.Artist(current_artist);
+
+				new_artist.id = id;
+				document.getElementById('album-list').setAttribute('data-counter', id+1);
 				new_artist.albums.push(album);
 				RCApp.artist_array.push(new_artist);
 				//RCApp.album_array.push(album);
@@ -192,10 +196,11 @@ RCApp.render_artists = function() {
 
 		// Set the unique id of the artist div to the data-counter value w class artist
 		artist_element.setAttribute('id', 'artist_'+artist.id);
-		artist_element.setAttribute('class', 'artist');
+		artist_element.setAttribute('class', 'item');
 
 		// Set up form to append to artist element
-		form_input.setAttribute('id', 'albums_input');
+		album_form.className = 'form-inline';
+		form_input.setAttribute('id', 'albums_input form-control');
 		form_input.setAttribute('class', 'albums_input');
 		form_input.setAttribute('type', 'textarea');
 		form_input.setAttribute('placeholder', 'Album1, Album2, Album3');
@@ -213,6 +218,7 @@ RCApp.render_artists = function() {
 		// Display the artist description if one has been provided
 		if (artist.description !== undefined) {
 			artist_description.innerHTML = artist.description;
+			artist_description.className = 'lead';
 		} else {
 			artist_description.innerHTML = "";
 		}
@@ -224,6 +230,7 @@ RCApp.render_artists = function() {
 		}
 
 		artist_title.appendChild(artist_albums);
+		artist_title.className = 'lead';
 		artist_albums.className = 'artist-albums';
 		artist_details.appendChild(artist_description);
 		artist_details.appendChild(artist_title);
@@ -248,6 +255,7 @@ RCApp.render_artists = function() {
 		artist_element.appendChild(artist_button);
 		artist_list.appendChild(artist_element);
 		artist_element.appendChild(artist_details);
+
 	}
 };
 
@@ -270,12 +278,15 @@ RCApp.render_albums = function() {
 
 		// Set attributes on album details to initially show as hidden
 		album_details.setAttribute('class', 'hidden album-details');
+		album_element.className = 'item'
 
 		for (var j = 0, k = album.artists.length; j < k; j++) {
 			album_artists.innerHTML += album.artists[j] + ' ';
 		}
 		album_artists_title.innerHTML = 'Artists featured in ' + album.name + ": ";
 		album_artists_title.appendChild(album_artists);
+		album_artists_title.className = 'lead';
+		album_artists.className = 'lead';
 		album_artists.className = 'album_artists';
 		album_details.appendChild(album_artists_title);
 		//album_details.appendChild(album_albums);

@@ -8,25 +8,25 @@
 	<script type="text/javascript" src="artist.js"></script>
 	<script type="text/javascript" src="RCApp.js"></script>
 </head>
-<body>
+<body id="body">
 	<div class="container">
 		<div class="jumbotron">
 			<h1>JS Record Company App</h1>
 		</div>
 		<div id="artists">
-			<form>
-				<input type="textarea" id="artist-name" placeholder="Artist name">
-				<input type="textarea" id="artist-description" placeholder="Artist description">
+			<form class="form">
+				<input type="textarea" id="artist-name" placeholder="Artist name" class="form-control">
+				<input type="textarea" id="artist-description" placeholder="Artist description" class="form-control">
 				<input type="submit" id="artist-button" class="button btn btn-success">
 			</form>
 			<div id="artist-list" data-counter="0">
 			</div>
 		</div>
 		<div id="albums">
-			<form>
-				<input type="textarea" id="album-name" placeholder="Album name">
-				<input type="textarea" id="album-artists" placeholder="Album artists">
-				<input type="textarea" id="album-year" placeholder="Year of release">
+			<form class="form">
+				<input type="textarea" id="album-name" placeholder="Album name" class="form-control">
+				<input type="textarea" id="album-artists" placeholder="Album artists" class="form-control">
+				<input type="textarea" id="album-year" placeholder="Year of release" class="form-control">
 				<input type="submit" id="album-button" class="button btn btn-success">
 			</form>
 			<div id="album-list" data-counter="0">

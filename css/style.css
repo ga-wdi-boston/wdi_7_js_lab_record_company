@@ -6,3 +6,46 @@
 .hidden {
 	display: none;
 }
+
+#body {
+	background-color: whitesmoke;
+}
+
+#artists {
+	width: 50%;
+	float: left;
+}
+
+#albums {
+	width: 50%;
+	float: left;
+}
+
+.form {
+	width: 50%;
+	margin-bottom: 20px;
+}
+
+
+.item {
+	background-color: #fff;
+	width: 80%;
+	padding: 15px;
+	margin-bottom: 20px;
+}
+
+h2 {
+	margin-top: 0;
+}
+
+.album-submit {
+	margin-left: 10px;
+}
+
+.albums-input {
+	width: 50%;
+}
+
+.showmore {
+	margin: 0 10px 0 0;
+}
