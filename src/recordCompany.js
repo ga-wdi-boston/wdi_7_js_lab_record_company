@@ -52,8 +52,8 @@ RecordCompany = {
       new_album_name = document.getElementById('new-album-field'),
       new_album_bandname = document.getElementById('new-bandname-field'),
       new_album_year = document.getElementById('new-year-field'),
+      delete_album_button = document.createElement('button'),
       all_albums = [];
-
 
     album_counter = parseInt(album_list.getAttribute('album-counter'));
     album_counter = album_counter + 1;
@@ -66,10 +66,11 @@ RecordCompany = {
     new_album_name.field = "";
     if(new_li_album.innerHTML !== "") {
       album_list.appendChild(new_li_album);
+      new_li_album.appendChild(delete_album_button);
     };
   },
 
-  delete_album: function(list) {
+  delete_album_button: function(list) {
     var all_albums = event.target.id.split('_'),
         album_list = document.getElementById('album-list'),
         id,
