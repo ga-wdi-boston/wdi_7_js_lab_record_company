@@ -15,7 +15,7 @@ Album.prototype.render_album = function() {
 
   item_counter = parseInt(album_list.getAttribute('data-counter'));
   new_li.setAttribute('id', 'item_'+item_counter);
-  delete_button.setAttribute('id', 'item_button_'+item_counter);
+  delete_button.setAttribute('id', 'delete_button_'+item_counter);
   item_counter += 1;
 
   new_li.className = 'album-list-item';

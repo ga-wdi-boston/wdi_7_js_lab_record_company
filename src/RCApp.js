@@ -20,6 +20,7 @@ window.onload = function() {
 
   artist_list.addEventListener('click', RCApp.artistItemDelete, false);
   album_list.addEventListener('click', RCApp.albumItemDelete, false);
+  artist_list.addEventListener('click', RCApp.hideShowArtistDetail, false);
 };
 
 var RCApp = {
@@ -56,4 +57,19 @@ RCApp.albumItemDelete = function(event){
   id = item_array[item_array.length - 1];
   item = document.getElementById('item_' + id);
   list.removeChild(item);
+};
+
+RCApp.hideShowArtistDetail = function(event) {
+  var item_array = event.target.id.split('_'),
+  id, item;
+
+  id = item_array[item_array.length - 1];
+  item = document.getElementById('detail_ul_' + id);
+
+  if (item.style.display === "block") {
+    item.style.display = "none";
+  }
+  else {
+    item.style.display = "block";
+  };
 };
