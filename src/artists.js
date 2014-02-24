@@ -48,7 +48,7 @@ Artists.createDescriptionElement = function(text) {
 Artists.createArtistAlbumListElement = function() {
   var artistAlbumListElement;
       artistAlbumListElement = document.createElement('ul');
-      artistAlbumListElement.setAttribute('id', 'artistElement_albums_list_'+ ArtistList.counter);
+      artistAlbumListElement.setAttribute('id', 'artistElement_albums_list_'+ Artists.counter);
       artistAlbumListElement.setAttribute('class', 'artist-albums-list');
       return artistAlbumListElement;
 };
