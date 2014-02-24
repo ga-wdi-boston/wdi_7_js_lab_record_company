@@ -28,20 +28,66 @@ AlbumList.delete_from_drop_down = function(artist_id){
   select.removeChild(option_element);
 };
 
+AlbumList.createElement = function(txt) {
+  var li;
+  li = document.createElement('li');
+  li.setAttribute('id', 'albumElement_'+  AlbumList.counter);
+  li.innerText = txt;
+  return li;
+};
+
+AlbumList.createDeleteButton = function() {
+  var deleteButton;
+  deleteButton = document.createElement('button');
+  deleteButton.setAttribute('id', 'albumElement_button_'+ AlbumList.counter);
+  deleteButton.setAttribute('class', 'delete');
+  deleteButton.innerText = 'delete';
+  return deleteButton;
+};
+
+AlbumList.createInfoButton = function() {
+  var infoButton;
+  infoButton = document.createElement('button');
+  infoButton.setAttribute('id', 'albumElement_info_button_'+ AlbumList.counter);
+  infoButton.setAttribute('class', 'show');
+  infoButton.innerText = 'show/hide info';
+  return infoButton;
+};
+
+AlbumList.createBandNameElement = function(txt) {
+  var bandNameElement;
+  bandNameElement = document.createElement('p');
+  bandNameElement.setAttribute('id', 'albumElement_band_name_'+ AlbumList.counter);
+  bandNameElement.setAttribute('class', 'band_name');
+  bandNameElement.innerText = txt;
+  return bandNameElement;
+};
+
+AlbumList.createToggleElement = function() {
+  var toggleElement;
+  toggleElement = document.createElement('div');
+  toggleElement.setAttribute('id', 'albumElement_toggle_'+ AlbumList.counter);
+  toggleElement.setAttribute('class', 'no-display');
+  return toggleElement;
+};
+
 AlbumList.addAlbum = function(event){
   event.preventDefault();
-  // set counter
   var the_album,
       the_artist,
-      albumElement = AlbumList.createElement(inputTextName),
-      albumsList = document.getElementById('albums-list'),
+      albumsList,
       inputTextName = document.getElementById('input-text-name-album'),
       selectBandName = document.getElementById('band-name'),
-      albumElement_button = AlbumList.createButton(),
-      inputTextYear = document.getElementById('input-text-year');
+      albumElement = AlbumList.createElement(inputTextName.value),
+      albumElement_button = AlbumList.createDeleteButton(),
+      inputTextYear = document.getElementById('input-text-year'),
+      albumInfoButtonElement = AlbumList.createInfoButton(),
+      albumBandNameElement = AlbumList.createBandNameElement(artist_arr[selectBandName.value].name),
+      albumToggleElement = AlbumList.createToggleElement();
 
-  AlbumList.counter = parseInt(albumsList.getAttribute('data-counter'));
+  albumsList = document.getElementById('albums-list');
   albumsList.setAttribute('data-counter', AlbumList.counter);
+  AlbumList.counter = parseInt(albumsList.getAttribute('data-counter'));
 
   // artist_arr[album_arr[0].band_index].name = the name of the band
   // storing band  by index to avoid dupicating data
@@ -53,6 +99,9 @@ AlbumList.addAlbum = function(event){
 
   albumsList.setAttribute('data-counter', AlbumList.counter);
   albumElement.appendChild(albumElement_button);
+  albumElement.appendChild(albumInfoButtonElement);
+  albumElement.appendChild(albumToggleElement);
+  albumToggleElement.appendChild(albumBandNameElement);
   albumsList.appendChild(albumElement);
 
 
@@ -63,7 +112,7 @@ AlbumList.addAlbum = function(event){
 
 AlbumList.albumDelete = function(event){
   var target = event.target;
-  if(target.nodeName !== "BUTTON") {
+  if(target.nodeName !== "BUTTON" || target.className === "show") {
     return;
   }
 
@@ -74,4 +123,22 @@ AlbumList.albumDelete = function(event){
   id = album_list_array[album_list_array.length - 1];
   album = document.getElementById('albumElement_' + id);
   list.removeChild(album);
+};
+
+AlbumList.toggleAlbumInfo = function(event){
+  var target = event.target, list, albums_list_array,id, div;
+  if(target.nodeName !== "BUTTON" || target.className === "delete") {
+    return;
+  }
+
+  list = document.getElementById('albums-list');
+  albums_list_array = event.target.id.split('_');
+  id = albums_list_array[albums_list_array.length - 1];
+  div = document.getElementById('albumElement_toggle_' + id);
+
+  if (div.className === 'no-display'){
+    div.setAttribute('class', 'yes-display');
+  } else {
+    div.setAttribute('class', 'no-display');
+  }
 };

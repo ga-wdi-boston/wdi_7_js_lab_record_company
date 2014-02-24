@@ -52,6 +52,7 @@ ArtistList.createToggleElement = function() {
 	return toggleElement;
 };
 
+
 ArtistList.addArtist = function(event){
 	// create an artist element
 	event.preventDefault();
@@ -61,10 +62,10 @@ ArtistList.addArtist = function(event){
 	//----------------------------------------------------------------
 	// Get the list the artist will be appended too
 	var artistList = document.getElementById('artists-list');
+	artistList.setAttribute('data-counter', ArtistList.counter);
 
 	// Set the counter
 	ArtistList.counter = parseInt(artistList.getAttribute('data-counter'));
-	artistList.setAttribute('data-counter', ArtistList.counter);
 
 	// Get the artist name from the text field
 	var inputTextName = document.getElementById('input-text-name');
@@ -121,7 +122,7 @@ ArtistList.toggleArtistInfo = function(event){
   // Step 2: Get the element with class name artist-description
   // Step 3: Toggle the display of the element with class name artist-description
 	var target = event.target, list, artist_list_array,id, div;
-	if(target.nodeName !== "BUTTON" || target.className === "delete" || target.className === "see-albums") {
+	if(target.nodeName !== "BUTTON" || target.className === "delete"){
 	  return;
 	}
 
@@ -140,7 +141,7 @@ ArtistList.toggleArtistInfo = function(event){
 ArtistList.artistDelete = function(event){
 	var target = event.target;
 
-	if(target.nodeName !== "BUTTON" || target.className === "show" || target.className === "see-albums"){
+	if(target.nodeName !== "BUTTON" || target.className === "show"){
 		return;
 	}
 
