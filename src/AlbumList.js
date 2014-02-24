@@ -63,6 +63,15 @@ AlbumList.createBandNameElement = function(txt) {
   return bandNameElement;
 };
 
+AlbumList.createYearReleasedElement = function(year) {
+  var releaseYearElement;
+  releaseYearElement = document.createElement('p');
+  releaseYearElement.setAttribute('id', 'albumElement_release_year_'+ AlbumList.counter);
+  releaseYearElement.setAttribute('class', 'release_year');
+  releaseYearElement.innerText = year;
+  return releaseYearElement;
+};
+
 AlbumList.createToggleElement = function() {
   var toggleElement;
   toggleElement = document.createElement('div');
@@ -83,6 +92,7 @@ AlbumList.addAlbum = function(event){
       inputTextYear = document.getElementById('input-text-year'),
       albumInfoButtonElement = AlbumList.createInfoButton(),
       albumBandNameElement = AlbumList.createBandNameElement(artist_arr[selectBandName.value].name),
+      albumReleaseYearElement = AlbumList.createYearReleasedElement(inputTextYear.value),
       albumToggleElement = AlbumList.createToggleElement();
 
   albumsList = document.getElementById('albums-list');
@@ -102,6 +112,7 @@ AlbumList.addAlbum = function(event){
   albumElement.appendChild(albumInfoButtonElement);
   albumElement.appendChild(albumToggleElement);
   albumToggleElement.appendChild(albumBandNameElement);
+  albumToggleElement.appendChild(albumReleaseYearElement);
   albumsList.appendChild(albumElement);
 
 
