@@ -1,15 +1,57 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>TGD Records</title>
-        <script type="text/javascript" src='src/main.js'></script>
+    <title>Wurble Records</title>
+      <script type="text/javascript" src='src/main.js'></script>
       <script type="text/javascript" src='src/artist.js'></script>
       <script type="text/javascript" src='src/artist_list.js'></script>
+      <link rel="stylesheet" type="text/css" href="src/style.css">
   </head>
   <body>
 
+  <h1>Wurble Records</h1>
+
+  <h2>Artists</h2>
+
+  <form>
+    <input type="text" placeholder="Artist Name">
+    <input type="text" placeholder="Description">
+    <button type="button">Create</button>
+  </form>
+
+  <br>
+
+  <div class="artist-row">
+    <div class="artist-name" id="artist-1-name">Annaface</div>
+    <div class="artist-desc" id="artist-1-desc">likes to wurble and sing</div>
+  </div>
+  <div class="artist-row">
+    <div class="artist-name" id="artist-2-name">Mollyface</div>
+    <div class="artist-desc" id="artist-2-desc">likes to dance and shout</div>
+  </div>
 
 
+  <h2>Albums</h2>
 
-</body>
+  <form>
+    <input type="text" placeholder="Album">
+    <input type="text" placeholder="Artist(s)">
+    <input type="text" placeholder="Year">
+    <button type="button">Create</button>
+  </form>
+
+  <br>
+
+  <div class="album-row">
+    <div class="album-name" id="album-1-name">Chasing Down the Dawn</div>
+    <div class="album-artists" id="album-1-artists">Anna, Molly</div>
+    <div class="album-year" id="album-1-year">2012</div>
+  </div>
+  <div class="album-row">
+    <div class="album-name" id="album-2-name">Drinking All Night Long</div>
+    <div class="album-artists" id="album-2-artits">Mel, Rhys</div>
+    <div class="album-year" id="album-2-year">2009</div>
+  </div>
+
+  </body>
 </html>
