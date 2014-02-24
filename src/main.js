@@ -202,7 +202,7 @@ RCApp.show_album = function(event) {
 }
 
 RCApp.hide_album = function(event) {
-	event.target.previousSibling.style.display = "none"; // show show button
+	event.target.previousSibling.style.display = "inline-block"; // show show button
 	event.target.previousSibling.previousSibling.style.display = "none"; // show year
 	event.target.previousSibling.previousSibling.previousSibling.style.display = "none"; // show band
 	event.target.style.display = "none"; // hide hide button

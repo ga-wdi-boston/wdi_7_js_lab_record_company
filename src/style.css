@@ -11,7 +11,6 @@ div.artist-name, div.artist-desc, div.album-name, div.album-band, div.album-year
 	width: 230px;
 	line-height: 30px;
 	padding-left: 6px;
-	border: 1px solid red;
 	margin-right: 4px;
 }
 
@@ -32,7 +31,7 @@ button {
 	line-height: 30px;
 	padding: 2px;
 	font-size: 16px;
-	margin-right: 6px;
+	margin-right: 4px;
 }
 
 button.create {
