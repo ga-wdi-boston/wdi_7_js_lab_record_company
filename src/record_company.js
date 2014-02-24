@@ -172,14 +172,14 @@ RCApp.recordCompany = {
         i = i + 1;
       }
     } else {
-      RCApp.recordCompany.artistAddAlbum();
+      RCApp.recordCompany.artistAddAlbum(event);
     }
   },
 
   // Sub handler that listens for click on artists list element
   // showOrDelete is the main handler and this gets invoked when it is neither
 
-  artistAddAlbum    : function () {
+  artistAddAlbum    : function (event) {
     var itemArray = event.target.id.split('_'), // 'bob_2_rock_1' artist then album
       artistName = itemArray[0],
       artistId = itemArray[1],
