@@ -12,8 +12,9 @@ window.onload = function() {
 var RCApp = RCApp || {};
 
 RCApp.insert_new_artist = function() {
-	var new_artist_name = document.getElementById('new-artist-name').value,
-			new_artist_desc = document.getElementById('new-artist-desc').value,
+	var new_artist = new RCApp.Artist();
+			new_artist_name = new_artist.name,
+			new_artist_desc = new_artist.desc,
 			artists_div = document.getElementById('artists'),
 			new_row = document.createElement('div'),
 			new_name = document.createElement('div'),
@@ -35,9 +36,12 @@ RCApp.insert_new_artist = function() {
 	new_row.appendChild(new_name);
 	new_row.appendChild(new_desc);
 
+	return false;
+
 };
 
-// RCApp.Artist = function() {
-// 	this.name = ;
-// 	this.desc = document.getElementById('new-artist-desc');
-//  };
+RCApp.Artist = function() {
+	this.name = document.getElementById('new-artist-name').value;
+	this.desc = document.getElementById('new-artist-desc').value;
+	// debugger
+};
