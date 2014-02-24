@@ -31,3 +31,7 @@ button {
 	padding: 2px;
 	font-size: 16px;
 }
+
+button.artist-delete {
+	margin-left: 6px;
+}

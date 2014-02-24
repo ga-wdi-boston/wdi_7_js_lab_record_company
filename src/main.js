@@ -19,6 +19,7 @@ RCApp.insert_new_artist = function() {
 			new_row = document.createElement('div'),
 			new_name = document.createElement('div'),
 			new_desc = document.createElement('div'),
+			new_delete_button = document.createElement('button'),
 			number = RCApp.Artist.number();
 
 	// assign classes, id's, and values
@@ -32,10 +33,16 @@ RCApp.insert_new_artist = function() {
 	new_desc.id = "artist-" + number + "-desc";
 	new_desc.innerHTML = new_artist_desc;
 
+	new_delete_button.className = "artist-delete";
+	new_delete_button.id = "artist-" + number + "-delete";
+	new_delete_button.setAttribute('type', "button");
+	new_delete_button.innerHTML = "delete";
+
 	// add to artist list
 	artists_div.appendChild(new_row);
 	new_row.appendChild(new_name);
 	new_row.appendChild(new_desc);
+	new_row.appendChild(new_delete_button);
 
 	new_artist.name.value = "";
 	new_artist.desc.value = "";
