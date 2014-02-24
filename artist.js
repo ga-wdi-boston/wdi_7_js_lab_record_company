@@ -1,15 +1,16 @@
 var RCApp = {};
-RCApp.Artist = function(name, description) {
+RCApp.Artist = function(name, description, id) {
 	if ((arguments[0] === "") || (arguments[1] === "")) {
 		alert("Enter both name and description");
 		throw new Error("Invalid entry");
 	}
 	this.name = name;
 	this.description = description;
+	this.id = id;
 	this.albums = [];
 };
 
-RCApp.Album = function(name, artists, year) {
+RCApp.Album = function(name, artists, year, id) {
 	if (arguments[0] === "") {
 		alert("Enter both name and description");
 		throw new Error("Invalid entry");
@@ -17,6 +18,7 @@ RCApp.Album = function(name, artists, year) {
 	this.name = name;
 	this.artists = artists || [];
 	this.year = year;
+	this.id = id;
 };
 
 RCApp.Artist.prototype.addAlbums = function(albums) {
