@@ -19,7 +19,7 @@ window.onload = function() {
   };
 
   artist_list.addEventListener('click', RCApp.artistShowOrDelete, false);
-  album_list.addEventListener('click', RCApp.albumItemDelete, false);
+  album_list.addEventListener('click', RCApp.albumShowOrDelete, false);
 };
 
 var RCApp = {
@@ -38,16 +38,6 @@ RCApp.add_to_album_list = function(list, album) {
   return true;
 };
 
-RCApp.albumItemDelete = function(event){
-  var item_array = event.target.id.split('_'),
-    list = document.getElementById('album-list'),
-    id, item;
-
-  id = item_array[item_array.length - 1];
-  item = document.getElementById('item_' + id);
-  list.removeChild(item);
-};
-
 RCApp.artistShowOrDelete = function(event) {
   var item_array = event.target.id.split('_'),
     list = document.getElementById('artist-list'),
@@ -60,6 +50,28 @@ RCApp.artistShowOrDelete = function(event) {
 
   }else if (event.target.className === 'details') {
     item = document.getElementById('detail_ul_' + id);
+
+    if (item.style.display === "block") {
+      item.style.display = "none";
+    }
+    else {
+      item.style.display = "block";
+    };
+  };
+};
+
+RCApp.albumShowOrDelete = function(event) {
+  var item_array = event.target.id.split('_'),
+    list = document.getElementById('album-list'),
+    id, item;
+  id = item_array[item_array.length - 1];
+
+  if (event.target.className === 'album-delete') {
+    item = document.getElementById('item_' + id);
+    list.removeChild(item);
+
+  }else if (event.target.className === 'album-details') {
+    item = document.getElementById('album_detail_ul_' + id);
 
     if (item.style.display === "block") {
       item.style.display = "none";
