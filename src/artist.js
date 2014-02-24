@@ -34,8 +34,8 @@ Artist.prototype.render_artist = function() {
   artist_list.setAttribute('data-counter', item_counter);
 
   new_li.appendChild(delete_button);
+  new_li.appendChild(detail_button);
   new_li.appendChild(detail_ul);
-  detail_ul.appendChild(detail_button);
   detail_ul.appendChild(artist_description);
 
   new_artist_name_input.value = '';
