@@ -6,7 +6,7 @@ h2 {
 	margin-top: 40px;
 	margin-left: 4px;
 }
-div.artist-name, div.artist-desc, div.album-name, div.album-artists, div.album-year {
+div.artist-name, div.artist-desc, div.album-name, div.album-band, div.album-year {
 	display: inline-block;
 	width: 230px;
 	line-height: 30px;
@@ -32,6 +32,6 @@ button {
 	font-size: 16px;
 }
 
-button.artist-delete {
+button.artist-show, button.artist-delete, button.album-show, button.album-delete {
 	margin-left: 6px;
 }
