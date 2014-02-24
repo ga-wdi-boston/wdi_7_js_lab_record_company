@@ -40,6 +40,7 @@ RCApp.insert_new_artist = function() {
 			new_name = document.createElement('div'),
 			new_desc = document.createElement('div'),
 			new_show_button = document.createElement('button'),
+			new_hide_button = document.createElement('button'),
 			new_delete_button = document.createElement('button'),
 			number = RCApp.Artist.number();
 
@@ -62,6 +63,13 @@ RCApp.insert_new_artist = function() {
 	new_show_button.innerHTML = "show";
 	new_show_button.addEventListener('click', RCApp.show_artist, false);
 
+	new_hide_button.className = "artist-hide";
+	new_hide_button.id = "artist-" + number + "-hide";
+	new_hide_button.setAttribute('type', "button");
+	new_hide_button.innerHTML = "hide";
+	new_hide_button.addEventListener('click', RCApp.hide_artist, false);
+	new_hide_button.style.display = "none";
+
 	new_delete_button.className = "artist-delete";
 	new_delete_button.id = "artist-" + number + "-delete";
 	new_delete_button.setAttribute('type', "button");
@@ -73,6 +81,7 @@ RCApp.insert_new_artist = function() {
 	new_row.appendChild(new_name);
 	new_row.appendChild(new_desc);
 	new_row.appendChild(new_show_button);
+	new_row.appendChild(new_hide_button);
 	new_row.appendChild(new_delete_button);
 
 	// reset textbox
@@ -87,9 +96,16 @@ RCApp.delete_artist = function(event) {
 };
 
 RCApp.show_artist = function(event) {
-	event.target.previousSibling.style.display = "inline-block";
+	event.target.previousSibling.style.display = "inline-block"; // show description
+	event.target.nextSibling.style.display = "inline-block"; // show hide button
+	event.target.style.display = "none"; // hide show button
+};
+
+RCApp.hide_artist = function(event) {
+	event.target.previousSibling.style.display = "none";
+	event.target.previousSibling.previousSibling.style.display = "none";
 	event.target.style.display = "none";
-}
+};
 
 RCApp.Album = function() {
 	this.name = document.getElementById('new-album-name');
@@ -116,6 +132,7 @@ RCApp.insert_new_album = function() {
 			new_band = document.createElement('div'),
 			new_year = document.createElement('div'),
 			new_show_button = document.createElement('button'),
+			new_hide_button = document.createElement('button'),
 			new_delete_button = document.createElement('button'),
 			number = RCApp.Album.number();
 
@@ -143,6 +160,13 @@ RCApp.insert_new_album = function() {
 	new_show_button.innerHTML = "show";
 	new_show_button.addEventListener('click', RCApp.show_album, false);
 
+	new_hide_button.className = "album-hide";
+	new_hide_button.id = "album-" + number + "-hide";
+	new_hide_button.setAttribute('type', "button");
+	new_hide_button.innerHTML = "hide";
+	new_hide_button.addEventListener('click', RCApp.hide_album, false);
+	new_hide_button.style.display = "none";
+
 	new_delete_button.className = "album-delete";
 	new_delete_button.id = "album-" + number + "-delete";
 	new_delete_button.setAttribute('type', "button");
@@ -155,6 +179,7 @@ RCApp.insert_new_album = function() {
 	new_row.appendChild(new_band);
 	new_row.appendChild(new_year);
 	new_row.appendChild(new_show_button);
+	new_row.appendChild(new_hide_button);
 	new_row.appendChild(new_delete_button);
 
 	// reset textbox
@@ -170,7 +195,15 @@ RCApp.delete_album = function(event) {
 };
 
 RCApp.show_album = function(event) {
-	event.target.previousSibling.style.display = "inline-block";
-	event.target.previousSibling.previousSibling.style.display = "inline-block";
-	event.target.style.display = "none";
+	event.target.previousSibling.style.display = "inline-block"; // show year
+	event.target.previousSibling.previousSibling.style.display = "inline-block"; // show band
+	event.target.nextSibling.style.display = "inline-block"; // show hide button
+	event.target.style.display = "none"; // hide show button
 }
+
+RCApp.hide_album = function(event) {
+	event.target.previousSibling.style.display = "none";
+	event.target.previousSibling.previousSibling.style.display = "none";
+	event.target.previousSibling.previousSibling.previousSibling.style.display = "none";
+	event.target.style.display = "none";
+};

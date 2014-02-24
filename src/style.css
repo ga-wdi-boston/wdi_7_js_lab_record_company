@@ -30,8 +30,9 @@ button {
 	line-height: 30px;
 	padding: 2px;
 	font-size: 16px;
+	margin-left: 6px;
 }
 
-button.artist-show, button.artist-delete, button.album-show, button.album-delete {
-	margin-left: 6px;
+button.create {
+	margin-left: 0;
 }
