@@ -59,7 +59,7 @@ AlbumList.createBandNameElement = function(txt) {
   bandNameElement = document.createElement('p');
   bandNameElement.setAttribute('id', 'albumElement_band_name_'+ AlbumList.counter);
   bandNameElement.setAttribute('class', 'band_name');
-  bandNameElement.innerText = txt;
+  bandNameElement.innerText = 'band name: ' + txt;
   return bandNameElement;
 };
 
@@ -68,7 +68,7 @@ AlbumList.createYearReleasedElement = function(year) {
   releaseYearElement = document.createElement('p');
   releaseYearElement.setAttribute('id', 'albumElement_release_year_'+ AlbumList.counter);
   releaseYearElement.setAttribute('class', 'release_year');
-  releaseYearElement.innerText = year;
+  releaseYearElement.innerText = 'release year: ' + year;
   return releaseYearElement;
 };
 

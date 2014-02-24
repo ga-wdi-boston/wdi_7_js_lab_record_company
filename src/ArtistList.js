@@ -32,7 +32,7 @@ ArtistList.createDescriptionElement = function(txt) {
 	descriptionElement = document.createElement('p');
 	descriptionElement.setAttribute('id', 'artistElement_description_'+ ArtistList.counter);
 	descriptionElement.setAttribute('class', 'description');
-	descriptionElement.innerText = txt;
+	descriptionElement.innerText = 'description: ' + txt;
 	return descriptionElement;
 };
 
@@ -82,6 +82,10 @@ ArtistList.addArtist = function(event){
 	// Create the button for show/hide of artist info
 	var artistInfoButtonElement = ArtistList.createInfoButton();
 
+	// Create the albums header
+	var artistAlbumHeaderElement = document.createElement('p')
+	    artistAlbumHeaderElement.innerText = 'Albums:'
+
 	// Create the description element
 	var artistDescriptionElement = ArtistList.createDescriptionElement(inputTextDescription.value);
 
@@ -95,6 +99,7 @@ ArtistList.addArtist = function(event){
 	artistElement.appendChild(artistInfoButtonElement);
 	artistElement.appendChild(artistToggleElement);
 	artistToggleElement.appendChild(artistDescriptionElement);
+	artistToggleElement.appendChild(artistAlbumHeaderElement);
 	artistToggleElement.appendChild(artistAlbumsListElement);
 
 	artistList.appendChild(artistElement);
