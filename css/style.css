@@ -25,3 +25,12 @@ header{
 	padding: 20px;
 	min-height: 200px;
 }
+
+.panel {
+	padding: 10px;
+}
+
+.details {
+	margin: 10px 0;
+	padding: 10px;
+}

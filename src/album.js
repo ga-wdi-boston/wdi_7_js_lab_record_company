@@ -13,11 +13,12 @@ RCApp.albumContent.Album.prototype = {
 	makeButton: function(type){
 		var button;
 		button = document.createElement('button');
-		button.innerHTML = type.toUpperCase();
-		if(type === 'delete'){
-			button.className = 'delete-button';
+		button.innerHTML = type;
+		if(type === 'Delete'){
+			button.innerHTML = '<span class="glyphicon glyphicon-trash"></span>';
+			button.className = 'delete-button btn button-default';
 		} else {
-			button.className = 'show-button';
+			button.className = 'show-button btn button-default';
 		};
 		return button;
 	},
@@ -28,27 +29,43 @@ RCApp.albumContent.Album.prototype = {
 		return h3;
 	},
 
-	artists: function(){
-		var ul, i, length, li;
-		ul = document.createElement('ul');
+	yearField: function(){
+		var p, div;
+		div = document.createElement('div')
+		div.innerHTML = '<h4>Release year: ' + this.year + '</h4><hr>'
+		return div;
+	},
+
+	artistList: function(){
+		var list, i, length, li, div;
+		div = document.createElement('div');
+		div.innerHTML = '<h3>Artists</h3>';
+
+		list = document.createElement('ul');
 		i = 0;
 		length = this.artists.length;
 
 		for(;i < length;){
 			li = document.createElement('li');
-			li.appendChild(this.artists[i][name]);
+			li.innerHTML = this.artists[i];
+			list.appendChild(li);
 			i = i + 1;
 		};
-
-		return ul;
-
+		return div;
 	},
 
 	showDetails: function(){
-		var div = document.createElement('div');
-		div.className = 'hide';
-		div.appendChild(this.descField());
-		return div;
+		var outer_div, inner_div;
+		outer_div = document.createElement('div');
+		outer_div.className = 'hide details';
+
+		inner_div = document.createElement('div');
+		inner_div.className = 'panel panel-default';
+
+		inner_div.appendChild(this.yearField());
+		inner_div.appendChild(this.artistList());
+		outer_div.appendChild(inner_div);
+		return outer_div;
 	},
 
 	renderMe: function(){
@@ -56,9 +73,9 @@ RCApp.albumContent.Album.prototype = {
 		new_li = document.createElement('li');
 		new_li.id = this.id;
 		new_li.appendChild(this.nameField());
-		new_li.appendChild(this.makeButton('delete'));
-		new_li.appendChild(this.makeButton('show'));
-		// new_li.appendChild(this.)
+		new_li.appendChild(this.makeButton('Delete'));
+		new_li.appendChild(this.makeButton('Show details'));
+		new_li.appendChild(this.showDetails());
 		return new_li;
 	}
 

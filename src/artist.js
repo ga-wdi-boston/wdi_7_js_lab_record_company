@@ -13,7 +13,7 @@ RCApp.artistContent.Artist.prototype = {
 	makeButton: function(type){
 		var button;
 		button = document.createElement('button');
-		button.innerHTML = type.toUpperCase();
+		button.innerHTML = type;
 		if(type === 'Delete'){
 			button.innerHTML = '<span class="glyphicon glyphicon-trash"></span>';
 			button.className = 'delete-button btn button-default';
@@ -24,7 +24,10 @@ RCApp.artistContent.Artist.prototype = {
 	},
 
 	albumList: function(){
-		var list, i, length, li;
+		var list, i, length, li, div;
+		div = document.createElement('div');
+		div.innerHTML = '<h4>Albums<hr></h4>'
+
 		list = document.createElement('ul');
 		i = 0;
 		length = this.albums.length;
@@ -35,7 +38,8 @@ RCApp.artistContent.Artist.prototype = {
 			list.appendChild(li);
 			i = i + 1;
 		};
-		return list;
+		div.appendChild(list);
+		return div;
 	},
 
 	nameField: function(){
@@ -45,17 +49,27 @@ RCApp.artistContent.Artist.prototype = {
 	},
 
 	descField: function(){
-		var p = document.createElement('p');
+		var div, p;
+		div = document.createElement('div');
+		div.innerHTML = '<h4>Description<hr></h4>'
+		p = document.createElement('p');
 		p.innerHTML = this.desc;
-		return p;
+		div.appendChild(p)
+		return div;
 	},
 
 	showDetails: function(){
-		var div = document.createElement('div');
-		div.className = 'hide';
-		div.appendChild(this.descField());
-		div.appendChild(this.albumList());
-		return div;
+		var outer_div, inner_div;
+		outer_div = document.createElement('div');
+		outer_div.className = 'hide details';
+
+		inner_div = document.createElement('div');
+		inner_div.className = 'panel panel-default';
+
+		inner_div.appendChild(this.descField());
+		inner_div.appendChild(this.albumList());
+		outer_div.appendChild(inner_div);
+		return outer_div;
 	},
 
 	renderMe: function(){

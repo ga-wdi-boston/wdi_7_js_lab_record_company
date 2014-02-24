@@ -58,7 +58,7 @@ RCApp.addAlbumToArtist = function(album_name, artist_name){
 };
 
 RCApp.deleteItem = function(event){
-	if(event.target.className === 'delete-button'){
+	if(event.target.className === 'delete-button btn button-default'){
 		var item, item_type, item_id;
 		item_id = event.target.parentNode.id;
 		item_type = item_id.split('_')[0]
@@ -109,11 +109,11 @@ RCApp.toggleDetails = function(){
 		button = event.target;
 		details_div = button.parentNode.querySelector('div');
 
-		if(details_div.className === 'hide'){
-			details_div.className = 'show';
+		if(details_div.className === 'hide details'){
+			details_div.className = 'show details';
 			button.innerHTML = 'HIDE DETAILS';
 		} else {
-			details_div.className = 'hide';
+			details_div.className = 'hide details';
 			button.innerHTML = 'SHOW DETAILS';
 		};
 	};
