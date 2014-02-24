@@ -51,6 +51,7 @@ RCApp.albumContent.Album.prototype = {
 			list.appendChild(li);
 			i = i + 1;
 		};
+		div.appendChild(list);
 		return div;
 	},
 

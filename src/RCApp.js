@@ -49,8 +49,8 @@ RCApp.addAlbumToArtist = function(album_name, artist_name){
 	for(;i < length;){
 		if(RCApp.artists[i].name === artist_name){
 			artist = RCApp.artists[i];
-			i = i + 1;
 		}
+		i = i + 1;
 	};
 
 	artist.albums.push(album_name);
