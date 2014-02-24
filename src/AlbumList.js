@@ -28,23 +28,6 @@ AlbumList.delete_from_drop_down = function(artist_id){
   select.removeChild(option_element);
 };
 
-AlbumList.createElement = function(txt) {
-  var li;
-  li = document.createElement('li');
-  li.setAttribute('id', 'albumElement_'+  AlbumList.counter);
-  li.innerText = txt;
-  return li;
-};
-
-AlbumList.createButton = function() {
-  var deleteButton;
-  deleteButton = document.createElement('button');
-  deleteButton.setAttribute('id', 'albumElement_button_'+ AlbumList.counter);
-  deleteButton.setAttribute('class', 'delete');
-  deleteButton.innerText = 'delete';
-  return deleteButton;
-};
-
 AlbumList.addAlbum = function(event){
   event.preventDefault();
   // set counter
