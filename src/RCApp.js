@@ -111,7 +111,7 @@ RCApp.deleteFromArray = function(field, value, array){
 	for(;i < length;){
 		if(array[i][field] === value){
 			array.splice(i);
-		}
+		};
 		i = i + 1;
 	};
 
@@ -144,8 +144,8 @@ RCApp.renderList = function(list, array){
 	i = 0;
 	length = array.length;
 
-	list = document.getElementById(list)
-	list.innerHTML = ''
+	list = document.getElementById(list);
+	list.innerHTML = '';
 
 	for(;i < length;){
 		list.appendChild(array[i].renderMe());

@@ -7,7 +7,7 @@ RCApp.albumContent = {
 			this.id = 'album_' + RCApp.album_counter;
 		} else {
 			throw new Error('Album name, year and artist are required');
-		}
+		};
 	}
 
 };
