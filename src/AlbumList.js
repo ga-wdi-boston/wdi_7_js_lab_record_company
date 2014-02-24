@@ -24,7 +24,7 @@ RCApp.AlbumListDrop_down = function(){
 
 RCApp.AlbumListDelete_from_drop_down = function(artist_id){
   var select = document.getElementById("band-name"),
-      options = artist_arr,
+      options = RCApp.artist_arr,
       artist,
       option_element;
   artist = options[artist_id];
