@@ -4,18 +4,32 @@
 	<title>RCA</title>
 	<link rel='stylesheet' type='text/css' href='./style/rca.css'>
 	<script src='./src/rca.js' type='text/javascript' charset='utf-8'></script>
+	<script src='./src/album.js' type='text/javascript' charset='utf-8'></script>
+	<script src='./src/artist.js' type='text/javascript' charset='utf-8'></script>
 </head>
 <body>
 	<h1>RCA Records</h1>
 	<h2>Artists</h2>
-	<ol>
-		<li>Prince</li>
-		<li>Katy Perry</li>
+	<ol id='artist-list'>
+		<li> Prince | rhythm and blues artist </li>
+		<li> Katy Perry | pop artist </li>
 	</ol>
+
 	<form>
-			Artist name: <input class='new-artist-name' input type='text'>
-			Artist description:</h5><input class='new-artist-description' input type='text' name='Artist description'>
-			<input class='add-artist-button' type='submit' value='Add Artist'>
+			Artist name: <input id='new-artist-name' input type='text'>
+			Artist description: <input id='new-artist-description' input type='text'>
+			<input id='new-artist-button' input type='submit' value='Add Artist'></submit>
+	</form>
+
+	<h2>Albums</h2>
+	<ol id='album-list'>
+		<li></li>
+	</ol>
+
+	<form>
+			Album name: <input id='new-album-name' input type='text'>
+			Album artist: <input id='new-album-artist' input type='text'>
+			Album release year: <input id='new-album-year' input type='number'></submit>
 	</form>
 
 </body>
