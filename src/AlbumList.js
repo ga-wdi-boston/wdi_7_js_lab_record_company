@@ -1,10 +1,14 @@
-var AlbumList = AlbumList || {};
+var RCApp = RCApp || {};
 
-AlbumList.counter = 0;
+RCApp.AlbumList = RCApp.AlbumList || {};
 
-AlbumList.drop_down = function(){
+RCApp.AlbumListCounter = 0;
+
+RCApp.album_arr = [];
+
+RCApp.AlbumListDrop_down = function(){
 	var select = document.getElementById("band-name"),
-	    options = artist_arr,
+	    options = RCApp.artist_arr,
 	    artist,
       id,
 	    option_element;
@@ -18,7 +22,7 @@ AlbumList.drop_down = function(){
   select.appendChild(option_element);
 };
 
-AlbumList.delete_from_drop_down = function(artist_id){
+RCApp.AlbumListDelete_from_drop_down = function(artist_id){
   var select = document.getElementById("band-name"),
       options = artist_arr,
       artist,
@@ -28,86 +32,86 @@ AlbumList.delete_from_drop_down = function(artist_id){
   select.removeChild(option_element);
 };
 
-AlbumList.createElement = function(txt) {
+RCApp.AlbumListCreateLiElement = function(txt) {
   var li;
   li = document.createElement('li');
-  li.setAttribute('id', 'albumElement_'+  AlbumList.counter);
+  li.setAttribute('id', 'albumElement_'+  RCApp.AlbumListCounter);
   li.innerText = txt;
   return li;
 };
 
-AlbumList.createDeleteButton = function() {
+RCApp.AlbumListCreateDeleteButton = function() {
   var deleteButton;
   deleteButton = document.createElement('button');
-  deleteButton.setAttribute('id', 'albumElement_button_'+ AlbumList.counter);
+  deleteButton.setAttribute('id', 'albumElement_button_'+ RCApp.AlbumListCounter);
   deleteButton.setAttribute('class', 'delete');
   deleteButton.innerText = 'delete';
   return deleteButton;
 };
 
-AlbumList.createInfoButton = function() {
+RCApp.AlbumListCreateInfoButton = function() {
   var infoButton;
   infoButton = document.createElement('button');
-  infoButton.setAttribute('id', 'albumElement_info_button_'+ AlbumList.counter);
+  infoButton.setAttribute('id', 'albumElement_info_button_'+ RCApp.AlbumListCounter);
   infoButton.setAttribute('class', 'show');
   infoButton.innerText = 'show/hide info';
   return infoButton;
 };
 
-AlbumList.createBandNameElement = function(txt) {
+RCApp.AlbumListCreateBandNameElement = function(txt) {
   var bandNameElement;
   bandNameElement = document.createElement('p');
-  bandNameElement.setAttribute('id', 'albumElement_band_name_'+ AlbumList.counter);
+  bandNameElement.setAttribute('id', 'albumElement_band_name_'+ RCApp.AlbumListCounter);
   bandNameElement.setAttribute('class', 'band_name');
   bandNameElement.innerText = 'band name: ' + txt;
   return bandNameElement;
 };
 
-AlbumList.createYearReleasedElement = function(year) {
+RCApp.AlbumListCreateYearReleasedElement = function(year) {
   var releaseYearElement;
   releaseYearElement = document.createElement('p');
-  releaseYearElement.setAttribute('id', 'albumElement_release_year_'+ AlbumList.counter);
+  releaseYearElement.setAttribute('id', 'albumElement_release_year_'+ RCApp.AlbumListCounter);
   releaseYearElement.setAttribute('class', 'release_year');
   releaseYearElement.innerText = 'release year: ' + year;
   return releaseYearElement;
 };
 
-AlbumList.createToggleElement = function() {
+RCApp.AlbumListCreateToggleElement = function() {
   var toggleElement;
   toggleElement = document.createElement('div');
-  toggleElement.setAttribute('id', 'albumElement_toggle_'+ AlbumList.counter);
+  toggleElement.setAttribute('id', 'albumElement_toggle_'+ RCApp.AlbumListCounter);
   toggleElement.setAttribute('class', 'no-display');
   return toggleElement;
 };
 
-AlbumList.addAlbum = function(event){
+RCApp.AlbumListAddAlbum = function(event){
   event.preventDefault();
   var the_album,
       the_artist,
       albumsList,
       inputTextName = document.getElementById('input-text-name-album'),
       selectBandName = document.getElementById('band-name'),
-      albumElement = AlbumList.createElement(inputTextName.value),
-      albumElement_button = AlbumList.createDeleteButton(),
+      albumElement = RCApp.AlbumListCreateLiElement(inputTextName.value),
+      albumElement_button = RCApp.AlbumListCreateDeleteButton(),
       inputTextYear = document.getElementById('input-text-year'),
-      albumInfoButtonElement = AlbumList.createInfoButton(),
-      albumBandNameElement = AlbumList.createBandNameElement(artist_arr[selectBandName.value].name),
-      albumReleaseYearElement = AlbumList.createYearReleasedElement(inputTextYear.value),
-      albumToggleElement = AlbumList.createToggleElement();
+      albumInfoButtonElement = RCApp.AlbumListCreateInfoButton(),
+      albumBandNameElement = RCApp.AlbumListCreateBandNameElement(RCApp.artist_arr[selectBandName.value].name),
+      albumReleaseYearElement = RCApp.AlbumListCreateYearReleasedElement(inputTextYear.value),
+      albumToggleElement = RCApp.AlbumListCreateToggleElement();
 
   albumsList = document.getElementById('albums-list');
-  albumsList.setAttribute('data-counter', AlbumList.counter);
-  AlbumList.counter = parseInt(albumsList.getAttribute('data-counter'));
+  albumsList.setAttribute('dataCounter', RCApp.AlbumListCounter);
+  RCApp.AlbumListCounter = parseInt(albumsList.getAttribute('dataCounter'));
 
   // artist_arr[album_arr[0].band_index].name = the name of the band
   // storing band  by index to avoid dupicating data
-  the_album = new Album(inputTextName.value, selectBandName.value, inputTextYear.value);
+  the_album = new RCApp.Album(inputTextName.value, selectBandName.value, inputTextYear.value);
 
-  the_artist = artist_arr[selectBandName.value]
+  the_artist = RCApp.artist_arr[selectBandName.value]
   the_artist.addAlbumToArtist(the_album);
-  album_arr.push(the_album);
+  RCApp.album_arr.push(the_album);
 
-  albumsList.setAttribute('data-counter', AlbumList.counter);
+  albumsList.setAttribute('dataCounter', RCApp.AlbumListCounter);
   albumElement.appendChild(albumElement_button);
   albumElement.appendChild(albumInfoButtonElement);
   albumElement.appendChild(albumToggleElement);
@@ -116,12 +120,12 @@ AlbumList.addAlbum = function(event){
   albumsList.appendChild(albumElement);
 
 
-  AlbumList.counter += 1;
+  RCApp.AlbumListCounter += 1;
   inputTextName.value = '';
   inputTextYear.value = '';
 };
 
-AlbumList.albumDelete = function(event){
+RCApp.AlbumListAlbumDelete = function(event){
   var target = event.target;
   if(target.nodeName !== "BUTTON" || target.className === "show") {
     return;
@@ -136,7 +140,7 @@ AlbumList.albumDelete = function(event){
   list.removeChild(album);
 };
 
-AlbumList.toggleAlbumInfo = function(event){
+RCApp.AlbumListToggleAlbumInfo = function(event){
   var target = event.target, list, albums_list_array,id, div;
   if(target.nodeName !== "BUTTON" || target.className === "delete") {
     return;

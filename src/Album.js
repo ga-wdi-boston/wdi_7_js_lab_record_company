@@ -1,7 +1,9 @@
-album_arr = []
+var RCApp = RCApp || {};
+
+RCApp.album_arr = []
 
 //Album with a name, band name, and year released
-Album = function(name,band_index, release_year){
+RCApp.Album = function(name,band_index, release_year){
 	if(name.length > 0 && band_index.length > 0){
 		this.name = name;
 		this.band_index = band_index;

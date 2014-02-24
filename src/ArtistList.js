@@ -1,59 +1,63 @@
-var ArtistList = ArtistList || {};
+var RCApp = RCApp || {};
 
-ArtistList.counter = 0;
-ArtistList.createElement = function(txt) {
+RCApp.ArtistList = RCApp.ArtistList || {};
+
+RCApp.artist_arr = [];
+
+RCApp.ArtistListCounter = 0;
+RCApp.ArtistCreateLiElement = function(txt) {
 	var li;
 	li = document.createElement('li');
-	li.setAttribute('id', 'artistElement_'+ ArtistList.counter);
+	li.setAttribute('id', 'artistElement_'+ RCApp.ArtistListCounter);
 	li.innerText = txt;
 	return li;
 };
 
-ArtistList.createDeleteButton = function() {
+RCApp.ArtistListCreateDeleteButton = function() {
 	var deleteButton;
 	deleteButton = document.createElement('button');
-	deleteButton.setAttribute('id', 'artistElement_delete_button_'+ ArtistList.counter);
+	deleteButton.setAttribute('id', 'artistElement_delete_button_'+ RCApp.ArtistListCounter);
 	deleteButton.setAttribute('class', 'delete');
 	deleteButton.innerText = 'delete';
 	return deleteButton;
 };
 
-ArtistList.createInfoButton = function() {
+RCApp.ArtistListCreateInfoButton = function() {
 	var infoButton;
 	infoButton = document.createElement('button');
-	infoButton.setAttribute('id', 'artistElement_info_button_'+ ArtistList.counter);
+	infoButton.setAttribute('id', 'artistElement_info_button_'+ RCApp.ArtistListCounter);
 	infoButton.setAttribute('class', 'show');
 	infoButton.innerText = 'show/hide info';
 	return infoButton;
 };
 
-ArtistList.createDescriptionElement = function(txt) {
+RCApp.ArtistListCreateDescriptionElement = function(txt) {
 	var descriptionElement;
 	descriptionElement = document.createElement('p');
-	descriptionElement.setAttribute('id', 'artistElement_description_'+ ArtistList.counter);
+	descriptionElement.setAttribute('id', 'artistElement_description_'+ RCApp.ArtistListCounter);
 	descriptionElement.setAttribute('class', 'description');
 	descriptionElement.innerText = 'description: ' + txt;
 	return descriptionElement;
 };
 
-ArtistList.createArtistAlbumListElement = function() {
+RCApp.ArtistListCreateArtistAlbumListElement = function() {
 	var artistAlbumListElement;
 	artistAlbumListElement = document.createElement('ul');
-	artistAlbumListElement.setAttribute('id', 'artistElement_albums_list_'+ ArtistList.counter);
+	artistAlbumListElement.setAttribute('id', 'artistElement_albums_list_'+ RCApp.ArtistListCounter);
 	artistAlbumListElement.setAttribute('class', 'artist-albums-list');
 	return artistAlbumListElement;
 };
 
-ArtistList.createToggleElement = function() {
+RCApp.ArtistListCreateToggleElement = function() {
 	var toggleElement;
 	toggleElement = document.createElement('div');
-	toggleElement.setAttribute('id', 'artistElement_toggle_'+ ArtistList.counter);
+	toggleElement.setAttribute('id', 'artistElement_toggle_'+ RCApp.ArtistListCounter);
 	toggleElement.setAttribute('class', 'no-display');
 	return toggleElement;
 };
 
 
-ArtistList.addArtist = function(event){
+RCApp.ArtistListAddArtist = function(event){
 	// create an artist element
 	event.preventDefault();
 
@@ -61,11 +65,11 @@ ArtistList.addArtist = function(event){
 	// Working with Element(s)
 	//----------------------------------------------------------------
 	// Get the list the artist will be appended too
-	var artistList = document.getElementById('artists-list');
-	artistList.setAttribute('data-counter', ArtistList.counter);
+	RCApp.ArtistList = document.getElementById('artists-list');
+	RCApp.ArtistList.setAttribute('dataCounter', RCApp.ArtistListCounter);
 
-	// Set the counter
-	ArtistList.counter = parseInt(artistList.getAttribute('data-counter'));
+	// Set theCounter
+	RCApp.ArtistListCounter = parseInt(RCApp.ArtistList.getAttribute('dataCounter'));
 
 	// Get the artist name from the text field
 	var inputTextName = document.getElementById('input-text-name');
@@ -74,26 +78,26 @@ ArtistList.addArtist = function(event){
 	var inputTextDescription = document.getElementById('input-text-description');
 
 	// Create the li containining the artist
-	var artistElement = ArtistList.createElement(inputTextName.value);
+	var artistElement = RCApp.ArtistCreateLiElement(inputTextName.value);
 
 	// Create the button for deleting an artist
-	var artistDeleteButtonElement = ArtistList.createDeleteButton();
+	var artistDeleteButtonElement = RCApp.ArtistListCreateDeleteButton();
 
 	// Create the button for show/hide of artist info
-	var artistInfoButtonElement = ArtistList.createInfoButton();
+	var artistInfoButtonElement = RCApp.ArtistListCreateInfoButton();
 
 	// Create the albums header
 	var artistAlbumHeaderElement = document.createElement('p')
 	    artistAlbumHeaderElement.innerText = 'Albums:'
 
 	// Create the description element
-	var artistDescriptionElement = ArtistList.createDescriptionElement(inputTextDescription.value);
+	var artistDescriptionElement = RCApp.ArtistListCreateDescriptionElement(inputTextDescription.value);
 
 	// Create the toggle elelment
-	var artistToggleElement = ArtistList.createToggleElement();
+	var artistToggleElement = RCApp.ArtistListCreateToggleElement();
 
 	// create the list which will have the albums of the given artist in it
-	var artistAlbumsListElement = ArtistList.createArtistAlbumListElement();
+	var artistAlbumsListElement = RCApp.ArtistListCreateArtistAlbumListElement();
 
 	artistElement.appendChild(artistDeleteButtonElement);
 	artistElement.appendChild(artistInfoButtonElement);
@@ -102,27 +106,27 @@ ArtistList.addArtist = function(event){
 	artistToggleElement.appendChild(artistAlbumHeaderElement);
 	artistToggleElement.appendChild(artistAlbumsListElement);
 
-	artistList.appendChild(artistElement);
+	RCApp.ArtistList.appendChild(artistElement);
 	//----------------------------------------------------------------
 
 	//----------------------------------------------------------------
 	// Working with Object
 	//----------------------------------------------------------------
-	artist_arr.push(new Artist(inputTextName.value, inputTextDescription.value));
+	RCApp.artist_arr.push(new RCApp.Artist(inputTextName.value, inputTextDescription.value));
 	//----------------------------------------------------------------
 
-	// Increase the counter
-	ArtistList.counter += 1;
+	// Increase theCounter
+	RCApp.ArtistListCounter += 1;
 
 	// Populate Dropdown
-	AlbumList.drop_down();
+	RCApp.AlbumListDrop_down();
 
 	// Clearing text fields
 	inputTextName.value = '';
 	inputTextDescription.value = '';
 };
 
-ArtistList.toggleArtistInfo = function(event){
+RCApp.ArtistListToggleArtistInfo = function(event){
   // Step 1: Get the parent node of target (li)
   // Step 2: Get the element with class name artist-description
   // Step 3: Toggle the display of the element with class name artist-description
@@ -143,7 +147,7 @@ ArtistList.toggleArtistInfo = function(event){
 	}
 };
 
-ArtistList.artistDelete = function(event){
+RCApp.ArtistListArtistDelete = function(event){
 	var target = event.target;
 
 	if(target.nodeName !== "BUTTON" || target.className === "show"){
@@ -157,10 +161,10 @@ ArtistList.artistDelete = function(event){
   id = artist_list_array[artist_list_array.length - 1];
   artist = document.getElementById('artistElement_' + id);
   list.removeChild(artist);
-  AlbumList.delete_from_drop_down(id);
+  RCApp.AlbumListDelete_from_drop_down(id);
 };
 
-ArtistList.updateArtistAlbumsList = function(artist, album) {
+RCApp.ArtistListUpdateArtistAlbumsList = function(artist, album) {
 	// Step 1: Find the artist
 	var artistElement = document.getElementById('artistElement_' + album.band_index);
 

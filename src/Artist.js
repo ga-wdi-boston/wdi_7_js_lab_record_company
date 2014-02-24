@@ -1,7 +1,9 @@
-artist_arr = []
+var RCApp = RCApp || {};
+
+RCApp.artist_arr = []
 
 // new Artist(name, desc)
-Artist = function(name,description){
+RCApp.Artist = function(name,description){
 	if(name.length > 0 && description.length > 0){
 		this.name = name;
 		this.description = description;
@@ -11,10 +13,10 @@ Artist = function(name,description){
 	}
 };
 
-Artist.prototype.addAlbumToArtist = function(album) {
+RCApp.Artist.prototype.addAlbumToArtist = function(album) {
 	this.albums.push(album);
 	// Update the DOM of the Artist's Album List
-	ArtistList.updateArtistAlbumsList(this, album);
+	RCApp.ArtistListUpdateArtistAlbumsList(this, album);
 };
 
 

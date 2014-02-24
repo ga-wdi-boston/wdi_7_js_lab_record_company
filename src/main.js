@@ -1,12 +1,15 @@
-window.onload = function() {
-  var addArtistButton = document.getElementById('add-artist'),
-  		 addAlbumButton = document.getElementById('add-album'),
-         artists_list = document.getElementById('artists-list'),
-          albums_list = document.getElementById('albums-list');
-   artists_list.addEventListener('click', ArtistList.artistDelete, false);
-   artists_list.addEventListener('click', ArtistList.toggleArtistInfo, false);
-   addArtistButton.addEventListener('click', ArtistList.addArtist, false);
-   addAlbumButton.addEventListener('click', AlbumList.addAlbum, false);
-   albums_list.addEventListener('click', AlbumList.albumDelete, false);
-   albums_list.addEventListener('click', AlbumList.toggleAlbumInfo, false);
+var RCApp = RCApp || {};
+
+window.onload = function(){
+  RCApp.addArtistButton = document.getElementById('add-artist'),
+   RCApp.addAlbumButton = document.getElementById('add-album'),
+     RCApp.artists_list = document.getElementById('artists-list'),
+      RCApp.albums_list = document.getElementById('albums-list');
+
+  RCApp.artists_list.addEventListener('click', RCApp.ArtistListArtistDelete, false);
+  RCApp.artists_list.addEventListener('click', RCApp.ArtistListToggleArtistInfo, false);
+  RCApp.addArtistButton.addEventListener('click', RCApp.ArtistListAddArtist, false);
+  RCApp.addAlbumButton.addEventListener('click', RCApp.AlbumListAddAlbum, false);
+  RCApp.albums_list.addEventListener('click', RCApp.AlbumListAlbumDelete, false);
+  RCApp.albums_list.addEventListener('click', RCApp.AlbumListToggleAlbumInfo, false);
 };
