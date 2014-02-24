@@ -1,2 +1,0 @@
-RCApp.ArtistList = {};
-
