@@ -39,6 +39,7 @@ RCApp.artistContent.Artist.prototype = {
 			i = i + 1;
 		};
 		div.appendChild(list);
+		div.appendChild(this.albumForm());
 		return div;
 	},
 
@@ -56,6 +57,29 @@ RCApp.artistContent.Artist.prototype = {
 		p.innerHTML = this.desc;
 		div.appendChild(p)
 		return div;
+	},
+
+	albumForm: function(){
+		var form, select, submit, artist;
+		artist = this;
+		form = document.createElement('form');
+		form.innerHTML = '<h5>Add an album to this artist</h5>';
+		select = document.createElement('select');
+		select.id = 'add-artist-album';
+		select.className = 'form-control';
+		form.appendChild(select);
+
+		button = document.createElement('button');
+		button.className = 'btn button-default';
+		button.innerHTML = 'Add Album';
+		button.id = 'add-album-to-artist-button';
+		button.onclick = function(event){
+			var album, field;
+			field = document.getElementById('add-artist-album');
+				artist.albums.push(field.value);
+			};
+		form.appendChild(button);
+		return form;
 	},
 
 	showDetails: function(){
@@ -76,10 +100,12 @@ RCApp.artistContent.Artist.prototype = {
 		var new_li;
 		new_li = document.createElement('li');
 		new_li.id = this.id;
+		new_li.className = 'item';
 		new_li.appendChild(this.nameField());
 		new_li.appendChild(this.makeButton('Delete'));
 		new_li.appendChild(this.makeButton('Show details'));
 		new_li.appendChild(this.showDetails());
+		RCApp.populateAlbums(new_li.querySelector('select'));
 		return new_li;
 	}
 

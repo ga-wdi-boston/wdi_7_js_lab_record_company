@@ -87,7 +87,21 @@ RCApp.populateArtists = function(){
 		list.appendChild(option);
 		i = i + 1;
 	};
+};
 
+RCApp.populateAlbums = function(select_list){
+	var i, option;
+	select_list.innerHTML = '';
+
+	i = 0;
+	length = RCApp.albums.length;
+
+	for(;i < length;){
+		option = document.createElement('option');
+		option.innerHTML = RCApp.albums[i].name;
+		select_list.appendChild(option);
+		i = i + 1;
+	};
 };
 
 RCApp.deleteFromArray = function(field, value, array){
@@ -111,10 +125,10 @@ RCApp.toggleDetails = function(){
 
 		if(details_div.className === 'hide details'){
 			details_div.className = 'show details';
-			button.innerHTML = 'HIDE DETAILS';
+			button.innerHTML = 'Hide details';
 		} else {
 			details_div.className = 'hide details';
-			button.innerHTML = 'SHOW DETAILS';
+			button.innerHTML = 'Show details';
 		};
 	};
 

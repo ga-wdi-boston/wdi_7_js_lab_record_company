@@ -12,7 +12,7 @@
 
 	<header>
 		<div class='container'>
-			<h1>RCApp Dashboard</h1>
+			<h1><span class="glyphicon glyphicon-sound-dolby"></span> RCApp Dashboard</h1>
 		</div>
 	</header>
 	<div class='container'>
@@ -22,6 +22,7 @@
 				<div id="artists">
 					<h2>Artists</h2>
 					<div class="add-box">
+						<h3>Add an Artist</h3>
 						<input id="add-artist-name" class="form-control" placeholder="Artist name">
 						<textarea id="add-artist-desc" class="form-control" placeholder="Description"></textarea>
 						<button id="add-artist-button" class="form-control">Add</button>
@@ -36,10 +37,17 @@
 				<div id="albums">
 					<h2>Albums</h2>
 					<div class="add-box">
+						<h3>Add an Album</h3>
 						<input id="add-album-name" class="form-control" placeholder="Album name">
-						<select id="add-album-artist" class="form-control" >
-						</select>
-						<input id="add-album-year" class="form-control" placeholder="Album year">
+						<div class='row'>
+							<div class='col-md-8 col-lg-8'>
+								<select id="add-album-artist" class="form-control" >
+								</select>
+							</div>
+							<div class='col-md-4 col-lg-4'>
+								<input id="add-album-year" class="form-control" placeholder="Album year">
+							</div>
+						</div>
 						<button id="add-album-button" class="form-control">Add</button>
 					</div>
 					<ul id="albums-list">
