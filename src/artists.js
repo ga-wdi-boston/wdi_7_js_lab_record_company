@@ -67,12 +67,11 @@ RCApp.artistShow = function(event){
   artist_show_button = document.getElementById('artist_show_button_' + id);
 
   artist_info = artist.getAttribute('data-info');
-  // artist_show_button.innerText = "Unshow";
+  artist.removeChild(artist_show_button);
   artist.innerHTML += ('<br>' + artist_info +'<br>' + 'name:');
 
   artist.appendChild(albumNameAdd);
   artist.appendChild(albumButtonAdd);
-
   if("artist_show_button_" + event.target.id.charAt(event.target.id.length -1) === event.target.id){
     artist_list.appendChild(artist);
   };
