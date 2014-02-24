@@ -23,6 +23,21 @@ RCApp.artistContent.Artist.prototype = {
 		return button;
 	},
 
+	albumList: function(){
+		var list, i, length, li;
+		list = document.createElement('ul');
+		i = 0;
+		length = this.albums.length;
+
+		for(;i < length;){
+			li = document.createElement('li');
+			li.innerHTML = this.albums[i];
+			list.appendChild(li);
+			i = i + 1;
+		};
+		return list;
+	},
+
 	nameField: function(){
 		var h3 = document.createElement('h3');
 		h3.innerHTML = this.name;
@@ -39,6 +54,7 @@ RCApp.artistContent.Artist.prototype = {
 		var div = document.createElement('div');
 		div.className = 'hide';
 		div.appendChild(this.descField());
+		div.appendChild(this.albumList());
 		return div;
 	},
 

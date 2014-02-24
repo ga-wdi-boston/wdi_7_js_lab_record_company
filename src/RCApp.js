@@ -31,12 +31,30 @@ RCApp.addAlbum = function(event){
 	year_field = document.getElementById("add-album-year");
 
 	album = new RCApp.albumContent.Album(name_field.value, year_field.value, artist_field.value);
-	name_field.value = '';
-	year_field.value = '';
 
 	RCApp.albums.push(album);
+	RCApp.addAlbumToArtist(name_field.value, artist_field.value)
 	RCApp.updateCounters();
+	name_field.value = '';
+	year_field.value = '';
 	RCApp.renderList('albums-list', RCApp.albums);
+	RCApp.renderList('artists-list', RCApp.artists);
+};
+
+RCApp.addAlbumToArtist = function(album_name, artist_name){
+	var i, length, artist;
+	i = 0;
+	length = RCApp.artists.length;
+
+	for(;i < length;){
+		if(RCApp.artists[i].name === artist_name){
+			artist = RCApp.artists[i];
+			i = i + 1;
+		}
+	};
+
+	artist.albums.push(album_name);
+
 };
 
 RCApp.deleteItem = function(event){
@@ -101,7 +119,6 @@ RCApp.toggleDetails = function(){
 	};
 
 };
-
 
 RCApp.updateCounters = function(){
 	RCApp.artist_counter = RCApp.artists.length;
