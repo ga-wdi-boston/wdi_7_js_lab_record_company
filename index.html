@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>B &deg; C &deg; R</title>
+      <link rel="stylesheet" href="css/style.css">
+      <link href='http://fonts.googleapis.com/css?family=Playfair+Display+SC' rel='stylesheet' type='text/css'>
+      <script type="text/javascript" src='src/main.js'></script>
+      <script type="text/javascript" src="src/Artist.js"></script>
+      <script type="text/javascript" src="src/ArtistList.js"></script>
+      <script type="text/javascript" src="src/Album.js"></script>
+      <script type="text/javascript" src="src/AlbumList.js"></script>
+  </head>
+  <body>
+  <h1>Black Celebration Recordings.</h1>
+    <h3>Artists.</h3>
+      <ul id='artist-list'>
+      </ul>
+    <form id='new-artist-form'>
+      <input id='new-artist-name' type='text' placeholder='Name' >
+      <input id='new-artist-desc' type='text' placeholder='Description'>
+      <input type='submit' value='Add Artist'>
+    </form>
+    <h3>Albums.</h3>
+      <ul id='album-list'>
+      </ul>
+    <form id='new-album-form'>
+      <input id='new-album-name' type='text' placeholder='Name' >
+      <select id='artist-name'>
+      <input id='new-album-year' type='text' placeholder='Release Year'>
+      <input type='submit' value='Add Artist'>
+    </form>
+  </body>
+</html>

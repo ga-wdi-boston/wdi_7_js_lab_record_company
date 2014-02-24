@@ -1,0 +1,30 @@
+body{
+  font-family: Helvetica, Arial, Sans-Serif;
+  color:black;
+}
+
+#container{
+  width:1000px;
+  margin:auto;
+}
+
+h1{
+  font-family: 'Playfair Display SC', serif;
+  font-style:italic;
+  color:black;
+}
+
+h3{
+  font-family: 'Playfair Display SC', serif;
+  font-style:italic;
+  color:#606060;
+}
+
+.actions{
+  float:right;
+}
+
+button{
+  margin:0px;
+  border:none;
+}
