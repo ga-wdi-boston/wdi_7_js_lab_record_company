@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dashboard</title>
+	<script src="./src/main.js"> </script>
+	<script src="./src/artist_list.js"> </script>
+	<script src="./src/album_list.js"> </script>
+	<script src="./src/artist.js"> </script>
+	<script src="./src/album.js"> </script>
+</head>
+<body>
+
+	<h1> Record Label </h1>
+
+	<form> New Artist:<br>
+		Name: <input type="text" id="new-artist-name">
+  	Description: <input type="text" id="new-artist-desc">
+		<input type="submit" value="Add Artist" id="add-artist">
+	</form>
+	<ul id="artist-list">
+	</ul>
+
+	<form></form>
+	<ul id="album-list">
+	</ul>
+
+	<!-- When the submit button is clicked, run the addArtistHandler function, which adds the <li> New Artist </li> to the page -->
+	<script type='text/javascript'>
+		var submitButton = document.getElementById('add-artist');
+		submitButton.addEventListener('click', RCApp.ArtistList.addArtistHandler, false);
+
+	</script>
+
+</body>
+</html>
