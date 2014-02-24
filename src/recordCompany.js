@@ -9,16 +9,18 @@ window.onload = function() {
   add_album_button = document.getElementById('add-album-button'),
   add_artist_button = document.getElementById('add-artist-button');
 
+  album_list.addEventListener('click', RecordCompany.delete_album, false);
+
   add_artist_button.onclick = function(event) {
-  event.preventDefault();
-  RecordCompany.new_artist(artist_list);
-  return false;
+    event.preventDefault();
+    RecordCompany.new_artist(artist_list);
+    return false;
   };
 
   add_album_button.onclick = function(event) {
-  event.preventDefault();
-  RecordCompany.new_album(album_list);
-  return false;
+    event.preventDefault();
+    RecordCompany.new_album(album_list);
+    return false;
   };
 };
 
@@ -32,11 +34,11 @@ RecordCompany = {
       all_artists = [];
 
     artist_counter = parseInt(artist_list.getAttribute('artist-counter'));
-    artist_counter += 1;
+    artist_counter = artist_counter + 1;
     new_li_artist.setAttribute('id', 'artist_' + artist_counter);
 
-    new_artist = new RcApp.Artist(new_artist_name.value, new_artist_description.value);
-    all_artists.push(new_artist);
+    added_artist = new RcApp.Artist(new_artist_name.value, new_artist_description.value);
+    all_artists.push(added_artist);
 
     new_li_artist.innerHTML = new_artist_name.value;
     new_artist_name.field = "";
@@ -54,8 +56,9 @@ RecordCompany = {
 
 
     album_counter = parseInt(album_list.getAttribute('album-counter'));
-    album_counter += 1;
+    album_counter = album_counter + 1;
     new_li_album.setAttribute('id', 'album_' + album_counter);
+
     new_album = new RcApp.Album(new_album_name.value, new_album_bandname.value, new_album_year.value);
     all_albums.push(new_album);
 
@@ -64,8 +67,19 @@ RecordCompany = {
     if(new_li_album.innerHTML !== "") {
       album_list.appendChild(new_li_album);
     };
+  },
+
+  delete_album: function(list) {
+    var all_albums = event.target.id.split('_'),
+        album_list = document.getElementById('album-list'),
+        id,
+        album;
+
+    id = all_albums[all.albums.length - 1];
+    album = document.getElementById('album_'+id);
+    target.id = album.id;
+    target.remove();
   }
 };
-
 
 
