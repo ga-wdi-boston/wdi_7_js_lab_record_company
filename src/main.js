@@ -19,11 +19,13 @@ RCApp.insert_new_artist = function() {
 			new_row = document.createElement('div'),
 			new_name = document.createElement('div'),
 			new_desc = document.createElement('div'),
+			new_show_button = document.createElement('button'),
 			new_delete_button = document.createElement('button'),
 			number = RCApp.Artist.number();
 
 	// assign classes, id's, and values
 	new_row.className = "artist-row";
+	new_row.setAttribute('data-counter', number);
 
 	new_name.className = "artist-name";
 	new_name.id = "artist-" + number + "-name";
@@ -32,6 +34,13 @@ RCApp.insert_new_artist = function() {
 	new_desc.className = "artist-desc";
 	new_desc.id = "artist-" + number + "-desc";
 	new_desc.innerHTML = new_artist_desc;
+	new_desc.style.display = "none";
+
+	new_show_button.className = "artist-show";
+	new_show_button.id = "artist-" + number + "-show";
+	new_show_button.setAttribute('type', "button");
+	new_show_button.innerHTML = "show";
+	new_show_button.addEventListener('click', RCApp.show_artist, false);
 
 	new_delete_button.className = "artist-delete";
 	new_delete_button.id = "artist-" + number + "-delete";
@@ -43,6 +52,7 @@ RCApp.insert_new_artist = function() {
 	artists_div.appendChild(new_row);
 	new_row.appendChild(new_name);
 	new_row.appendChild(new_desc);
+	new_row.appendChild(new_show_button);
 	new_row.appendChild(new_delete_button);
 
 	// reset textbox
@@ -68,3 +78,8 @@ RCApp.Artist.number = (function(){
 RCApp.delete_artist = function(event) {
 	event.target.parentNode.parentNode.removeChild(event.target.parentNode);
 };
+
+RCApp.show_artist = function(event) {
+	event.target.previousSibling.style.display = "inline-block";
+	event.target.style.display = "none";
+}
