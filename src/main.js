@@ -10,5 +10,3 @@ window.onload = function() {
    addAlbumButton.addEventListener('click', AlbumList.addAlbum, false);
    albums_list.addEventListener('click', AlbumList.albumDelete, false);
 };
-
-

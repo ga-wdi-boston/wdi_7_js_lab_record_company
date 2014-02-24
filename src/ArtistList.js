@@ -61,10 +61,10 @@ ArtistList.addArtist = function(event){
 	//----------------------------------------------------------------
 	// Get the list the artist will be appended too
 	var artistList = document.getElementById('artists-list');
-	artistList.setAttribute('data-counter', ArtistList.counter);
 
 	// Set the counter
 	ArtistList.counter = parseInt(artistList.getAttribute('data-counter'));
+	artistList.setAttribute('data-counter', ArtistList.counter);
 
 	// Get the artist name from the text field
 	var inputTextName = document.getElementById('input-text-name');
@@ -151,6 +151,7 @@ ArtistList.artistDelete = function(event){
   id = artist_list_array[artist_list_array.length - 1];
   artist = document.getElementById('artistElement_' + id);
   list.removeChild(artist);
+  AlbumList.delete_from_drop_down(id);
 };
 
 ArtistList.updateArtistAlbumsList = function(artist, album) {
