@@ -92,6 +92,7 @@ RCApp.actionHandler = function(event) {
 			}
 
 			if (!album_names.contains(new_album.name)) {
+				new_album.artists.push(artist.name);
 				RCApp.album_array.push(new_album);
 			}
 
