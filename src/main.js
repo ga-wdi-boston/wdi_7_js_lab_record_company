@@ -37,6 +37,7 @@ RCApp.insert_new_artist = function() {
 	new_delete_button.id = "artist-" + number + "-delete";
 	new_delete_button.setAttribute('type', "button");
 	new_delete_button.innerHTML = "delete";
+	new_delete_button.addEventListener('click', RCApp.delete_artist, false);
 
 	// add to artist list
 	artists_div.appendChild(new_row);
@@ -44,6 +45,7 @@ RCApp.insert_new_artist = function() {
 	new_row.appendChild(new_desc);
 	new_row.appendChild(new_delete_button);
 
+	// reset textbox
 	new_artist.name.value = "";
 	new_artist.desc.value = "";
 	return false;
@@ -62,3 +64,7 @@ RCApp.Artist.number = (function(){
     return i;
   };
 })();
+
+RCApp.delete_artist = function(event) {
+	event.target.parentNode.parentNode.removeChild(event.target.parentNode);
+};
