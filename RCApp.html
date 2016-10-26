@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<div id='container'>
+    Add Artist: <input type='text' id='input-text' placeholder='Add an artist'>
+    </input>
+    <input type='text' id='input-desp' placeholder ='Add Description'></input>
+    <input type='submit' id='artist-button'>
+    <h2>List of artists</h2>
+    <ul id='artist-list' data-artistcounter='0'></ul>
+
+    Add Album: <input type='text' id='input-text2' placeholder='Add an album'>
+    </input>
+    <input type='text' id='input-band' placeholder ='Add Band'></input>
+    <input type='text' id='input-year' placeholder ='Add Year'></input>
+    <input type='submit' id='album-button'>
+    <h2>List of albums</h2>
+    <ul id='album-list' data-counter='0'></ul>
+  </div>
+  	<script src='RCApp.js'></script>
+    <script type='text/javascript'>
+      var inputText = document.getElementById('artist-button'),
+		      inputText2 = document.getElementById('album-button'),
+		      list = document.getElementById('artist-list'),
+		      list2 = document.getElementById('album-list');
+      list.addEventListener('click', RCApp.artistDelete, false);
+      list2.addEventListener('click', RCApp.albumDelete, false);
+      list.addEventListener('click', RCApp.artistAddAlbum, false);
+      inputText.addEventListener('click', RCApp.addArtist, false);
+      inputText2.addEventListener('click', RCApp.addAlbum, false);
+    </script>
+</body>
+</html>
